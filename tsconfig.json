@@ -19,7 +19,8 @@
     "paths": {
       "@/*": ["src/*"]
     },
-    "typeRoots": ["./node_modules/@types", "./src/types"]
+    "typeRoots": ["./node_modules/@types", "./src/types"],
+    "types": ["vite/client"]   // <-- ADD THIS LINE
   },
   "include": ["src", "src/types"],
   "references": [{ "path": "./tsconfig.node.json" }]
