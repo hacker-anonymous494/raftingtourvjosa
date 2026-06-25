@@ -4,10 +4,7 @@ import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 import { z } from 'https://esm.sh/zod@3.22.4'
 
 // Import shared utilities
-import { corsHeaders as sharedCors, jsonResponse, errorResponse, handleOptions } from '../_shared/cors.ts'
-
-// We'll inline the Turnstile verification for debugging, so we don't need the shared turnstile.ts import for now.
-// If you want to keep it, you can import verifyTurnstile and still override.
+import { corsHeaders as sharedCors } from '../_shared/cors.ts'
 
 const BookingSchema = z.object({
   tour_id: z.string().uuid(),
@@ -92,20 +89,18 @@ function generateBookingRef(): string {
 }
 
 serve(async (req) => {
-  // ── Dynamic CORS: Allow any origin (or restrict to your domains) ──
+  // ── Dynamic CORS ──
   const origin = req.headers.get('origin') || ''
   const allowedOrigins = [
     'https://vjosaraftingtour.com',
     'https://vjosaraftingtours.netlify.app',
     'http://localhost:3000'
   ]
-  // If the origin is allowed, set it; otherwise fallback to '*'
   const corsHeaders = {
     ...sharedCors,
     'Access-Control-Allow-Origin': allowedOrigins.includes(origin) ? origin : '*',
   }
 
-  // Handle preflight
   if (req.method === 'OPTIONS') {
     return new Response('ok', { headers: corsHeaders })
   }
@@ -168,59 +163,36 @@ serve(async (req) => {
     }
     const data = parsed.data
 
-    // ─── DEBUG: Turnstile verification with detailed error ───
+    // ─── DEBUG: log the received tour_id ─────────────────
+    console.log('Received tour_id:', data.tour_id);
+
+    // ─── Verify Turnstile (simplified, using inline) ────
     const secret = Deno.env.get('TURNSTILE_SECRET_KEY')
-    console.log('TURNSTILE_SECRET_KEY exists?', !!secret)
-
-    let turnstileValid = false
-    let turnstileError = 'Unknown'
-    let turnstileDetails = {}
-
     if (!secret) {
-      turnstileError = 'TURNSTILE_SECRET_KEY is not set in environment'
-    } else {
-      try {
-        const formData = new URLSearchParams()
-        formData.append('secret', secret)
-        formData.append('response', data.turnstile_token)
-        formData.append('remoteip', ip)
-
-        const res = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: formData,
-        })
-        const json = await res.json()
-        console.log('Turnstile response:', json)
-        turnstileValid = json.success === true
-        turnstileDetails = json
-        if (!turnstileValid) {
-          turnstileError = json['error-codes']?.join(', ') || 'Verification failed'
-        }
-      } catch (err) {
-        console.error('Turnstile fetch error:', err)
-        turnstileError = String(err)
-      }
+      return new Response(JSON.stringify({ error: 'Server misconfigured: missing Turnstile secret' }), {
+        status: 500,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      })
     }
-
-    if (!turnstileValid) {
-      // Log to audit
+    const formData = new URLSearchParams()
+    formData.append('secret', secret)
+    formData.append('response', data.turnstile_token)
+    formData.append('remoteip', ip)
+    const verifyRes = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: formData,
+    })
+    const verifyJson = await verifyRes.json()
+    console.log('Turnstile response:', verifyJson)
+    if (!verifyJson.success) {
       await supabase.from('audit_logs').insert({
         event_type: 'turnstile_failed',
         severity: 'warning',
-        payload: { error: turnstileError, details: turnstileDetails },
+        payload: { error: verifyJson['error-codes'] },
         ip_address: ip,
       })
-      // Return detailed error (for debugging)
-      return new Response(JSON.stringify({
-        error: 'Security verification failed.',
-        debug: {
-          turnstileError,
-          turnstileDetails,
-          secretProvided: !!secret,
-          tokenLength: data.turnstile_token?.length
-        }
-      }), {
+      return new Response(JSON.stringify({ error: 'Security verification failed.' }), {
         status: 403,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       })
@@ -233,6 +205,8 @@ serve(async (req) => {
       .eq('id', data.tour_id)
       .eq('is_active', true)
       .single()
+
+    console.log('Tour query result:', tour, tourError);
 
     if (tourError || !tour) {
       return new Response(JSON.stringify({ error: 'Tour not found or unavailable.' }), {
