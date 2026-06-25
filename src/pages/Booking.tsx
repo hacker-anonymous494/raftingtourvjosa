@@ -136,6 +136,7 @@ export default function Booking() {
       setPendingBooking(result)
       setStep('payment')
       window.scrollTo({ top: 0, behavior: 'smooth' })
+      console.log('Sending tour_id:', tour.id);
     } catch (err) {
       const msg = err instanceof ApiError ? err.message : 'Booking failed. Please try again.'
       setSubmitError(msg)

@@ -3,11 +3,11 @@ import { serve } from 'https://deno.land/std@0.168.0/http/server.ts'
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 import { z } from 'https://esm.sh/zod@3.22.4'
 
-const corsHeaders = {
-  'Access-Control-Allow-Origin': 'https://vjosaraftingtour.com',
-  'Access-Control-Allow-Methods': 'POST, OPTIONS',
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
-}
+// Import shared utilities
+import { corsHeaders as sharedCors, jsonResponse, errorResponse, handleOptions } from '../_shared/cors.ts'
+
+// We'll inline the Turnstile verification for debugging, so we don't need the shared turnstile.ts import for now.
+// If you want to keep it, you can import verifyTurnstile and still override.
 
 const BookingSchema = z.object({
   tour_id: z.string().uuid(),
@@ -21,7 +21,7 @@ const BookingSchema = z.object({
   notes: z.string().max(500).optional().default(''),
 })
 
-// Simple in-memory rate limiter (per Deno isolate – good enough, backend enforces too)
+// Rate limiter (in-memory)
 const rateLimitMap = new Map<string, number[]>()
 
 function isRateLimited(ip: string): boolean {
@@ -33,18 +33,6 @@ function isRateLimited(ip: string): boolean {
   hits.push(now)
   rateLimitMap.set(ip, hits)
   return false
-}
-
-async function verifyTurnstile(token: string, ip: string): Promise<boolean> {
-  const secret = Deno.env.get('TURNSTILE_SECRET_KEY')
-  if (!secret) return false
-  const res = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: new URLSearchParams({ secret, response: token, remoteip: ip }),
-  })
-  const data = await res.json()
-  return data.success === true
 }
 
 async function createPayPalOrder(amount: number, currency: string, bookingRef: string): Promise<string> {
@@ -104,8 +92,30 @@ function generateBookingRef(): string {
 }
 
 serve(async (req) => {
-  if (req.method === 'OPTIONS') return new Response('ok', { headers: corsHeaders })
-  if (req.method !== 'POST') return new Response('Method Not Allowed', { status: 405, headers: corsHeaders })
+  // ── Dynamic CORS: Allow any origin (or restrict to your domains) ──
+  const origin = req.headers.get('origin') || ''
+  const allowedOrigins = [
+    'https://vjosaraftingtour.com',
+    'https://vjosaraftingtours.netlify.app',
+    'http://localhost:3000'
+  ]
+  // If the origin is allowed, set it; otherwise fallback to '*'
+  const corsHeaders = {
+    ...sharedCors,
+    'Access-Control-Allow-Origin': allowedOrigins.includes(origin) ? origin : '*',
+  }
+
+  // Handle preflight
+  if (req.method === 'OPTIONS') {
+    return new Response('ok', { headers: corsHeaders })
+  }
+
+  if (req.method !== 'POST') {
+    return new Response(JSON.stringify({ error: 'Method Not Allowed' }), {
+      status: 405,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+    })
+  }
 
   const ip = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ?? 'unknown'
 
@@ -122,12 +132,14 @@ serve(async (req) => {
 
     if (flags['site_enabled'] === false) {
       return new Response(JSON.stringify({ error: 'Service unavailable' }), {
-        status: 503, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        status: 503,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       })
     }
     if (flags['booking_enabled'] === false) {
       return new Response(JSON.stringify({ error: 'Bookings are currently disabled.' }), {
-        status: 503, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        status: 503,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       })
     }
 
@@ -140,7 +152,8 @@ serve(async (req) => {
         ip_address: ip,
       })
       return new Response(JSON.stringify({ error: 'Too many requests. Please wait.' }), {
-        status: 429, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        status: 429,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       })
     }
 
@@ -149,22 +162,67 @@ serve(async (req) => {
     const parsed = BookingSchema.safeParse(body)
     if (!parsed.success) {
       return new Response(JSON.stringify({ error: 'Invalid input.', details: parsed.error.flatten() }), {
-        status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        status: 400,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       })
     }
     const data = parsed.data
 
-    // ─── Verify Turnstile ─────────────────────────────────
-    const turnstileValid = await verifyTurnstile(data.turnstile_token, ip)
+    // ─── DEBUG: Turnstile verification with detailed error ───
+    const secret = Deno.env.get('TURNSTILE_SECRET_KEY')
+    console.log('TURNSTILE_SECRET_KEY exists?', !!secret)
+
+    let turnstileValid = false
+    let turnstileError = 'Unknown'
+    let turnstileDetails = {}
+
+    if (!secret) {
+      turnstileError = 'TURNSTILE_SECRET_KEY is not set in environment'
+    } else {
+      try {
+        const formData = new URLSearchParams()
+        formData.append('secret', secret)
+        formData.append('response', data.turnstile_token)
+        formData.append('remoteip', ip)
+
+        const res = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: formData,
+        })
+        const json = await res.json()
+        console.log('Turnstile response:', json)
+        turnstileValid = json.success === true
+        turnstileDetails = json
+        if (!turnstileValid) {
+          turnstileError = json['error-codes']?.join(', ') || 'Verification failed'
+        }
+      } catch (err) {
+        console.error('Turnstile fetch error:', err)
+        turnstileError = String(err)
+      }
+    }
+
     if (!turnstileValid) {
+      // Log to audit
       await supabase.from('audit_logs').insert({
         event_type: 'turnstile_failed',
         severity: 'warning',
-        payload: { endpoint: 'create-booking', ip },
+        payload: { error: turnstileError, details: turnstileDetails },
         ip_address: ip,
       })
-      return new Response(JSON.stringify({ error: 'Security verification failed.' }), {
-        status: 403, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      // Return detailed error (for debugging)
+      return new Response(JSON.stringify({
+        error: 'Security verification failed.',
+        debug: {
+          turnstileError,
+          turnstileDetails,
+          secretProvided: !!secret,
+          tokenLength: data.turnstile_token?.length
+        }
+      }), {
+        status: 403,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       })
     }
 
@@ -178,7 +236,8 @@ serve(async (req) => {
 
     if (tourError || !tour) {
       return new Response(JSON.stringify({ error: 'Tour not found or unavailable.' }), {
-        status: 404, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        status: 404,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       })
     }
 
@@ -186,7 +245,10 @@ serve(async (req) => {
     if (data.participants < tour.min_participants || data.participants > tour.max_participants) {
       return new Response(JSON.stringify({
         error: `Participants must be between ${tour.min_participants} and ${tour.max_participants}.`,
-      }), { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } })
+      }), {
+        status: 400,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      })
     }
 
     // ─── Validate date ───────────────────────────────────
@@ -195,7 +257,8 @@ serve(async (req) => {
     const maxDate = new Date(); maxDate.setMonth(maxDate.getMonth() + 6)
     if (bookingDate < tomorrow || bookingDate > maxDate) {
       return new Response(JSON.stringify({ error: 'Invalid tour date.' }), {
-        status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        status: 400,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       })
     }
 
@@ -216,7 +279,8 @@ serve(async (req) => {
         ip_address: ip,
       })
       return new Response(JSON.stringify({ error: 'Payment system error. Please try again.' }), {
-        status: 502, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        status: 502,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       })
     }
 
@@ -250,7 +314,8 @@ serve(async (req) => {
         ip_address: ip,
       })
       return new Response(JSON.stringify({ error: 'Failed to create booking.' }), {
-        status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        status: 500,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       })
     }
 
@@ -267,12 +332,16 @@ serve(async (req) => {
       total_amount: booking.total_amount,
       currency: booking.currency,
       paypal_order_id: paypalOrderId,
-    }), { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } })
+    }), {
+      status: 200,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+    })
 
   } catch (err) {
     console.error('create-booking error:', err)
     return new Response(JSON.stringify({ error: 'Internal server error.' }), {
-      status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      status: 500,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     })
   }
 })
