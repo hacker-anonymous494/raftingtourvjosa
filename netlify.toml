@@ -17,7 +17,7 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
     Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://js.paypal.com https://*.paypal.com https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://*.supabase.co https://api.paypal.com https://api.sandbox.paypal.com; frame-src https://challenges.cloudflare.com https://www.paypal.com https://www.sandbox.paypal.com;"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://js.paypal.com https://www.paypal.com https://*.paypal.com https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://*.supabase.co https://api.paypal.com https://api.sandbox.paypal.com; frame-src https://challenges.cloudflare.com https://www.paypal.com https://www.sandbox.paypal.com;"
 
 [[headers]]
   for = "/assets/*"
