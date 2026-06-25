@@ -1,0 +1,154 @@
+@import "tailwindcss";
+
+@theme {
+  --color-green-dark: #1A3C34;
+  --color-green-mid: #2D6A4F;
+  --color-green-light: #4CAF50;
+  --color-green-pale: #B7DDB0;
+  --color-ink: #0F1A17;
+
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-body: "Inter", system-ui, sans-serif;
+
+  --animate-fade-in: fadeIn 0.4s ease-out;
+  --animate-slide-up: slideUp 0.5s ease-out;
+  --animate-shimmer: shimmer 1.5s infinite;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@layer base {
+  :root {
+    --green-dark: #1A3C34;
+    --green-mid: #2D6A4F;
+    --green-light: #4CAF50;
+    --green-pale: #B7DDB0;
+    --ink: #0F1A17;
+  }
+
+  * { box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background-color: #0F1A17;
+    color: #E8EDE9;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Playfair Display', Georgia, serif;
+    line-height: 1.2;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 font-semibold rounded-lg transition-all duration-200 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed;
+    background-color: #4CAF50;
+    color: white;
+  }
+  .btn-primary:hover {
+    background-color: #2D6A4F;
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3);
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 font-semibold rounded-lg transition-all duration-200 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed;
+    border: 1px solid #4CAF50;
+    color: #4CAF50;
+  }
+  .btn-secondary:hover {
+    background-color: #4CAF50;
+    color: white;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2 font-medium rounded-lg transition-all duration-200 active:scale-95;
+    color: #B7DDB0;
+  }
+  .btn-ghost:hover { background-color: rgba(255,255,255,0.1); }
+
+  .card {
+    background-color: rgba(26,60,52,0.4);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 1rem;
+    backdrop-filter: blur(8px);
+  }
+
+  .input-field {
+    @apply w-full px-4 py-3 rounded-lg transition-all duration-200;
+    background-color: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: white;
+    outline: none;
+  }
+  .input-field::placeholder { color: rgba(255,255,255,0.3); }
+  .input-field:focus {
+    border-color: transparent;
+    box-shadow: 0 0 0 2px #4CAF50;
+  }
+
+  .label {
+    @apply block text-sm font-medium mb-1.5;
+    color: #B7DDB0;
+  }
+
+  .section-eyebrow {
+    @apply text-xs font-semibold uppercase;
+    letter-spacing: 0.2em;
+    color: #4CAF50;
+  }
+
+  .shimmer {
+    background: linear-gradient(90deg, rgba(255,255,255,0.03) 25%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.03) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+
+  .error-field {
+    border-color: rgba(239,68,68,0.6) !important;
+    box-shadow: 0 0 0 2px rgb(239,68,68) !important;
+  }
+
+  .error-text {
+    @apply text-xs mt-1;
+    color: rgb(248,113,113);
+  }
+
+  .animate-fade-in { animation: fadeIn 0.4s ease-out; }
+  .animate-slide-up { animation: slideUp 0.5s ease-out; }
+  .animate-spin {
+    animation: spin 1s linear infinite;
+  }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #1A3C34; }
+::-webkit-scrollbar-thumb { background: #2D6A4F; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #4CAF50; }
+
+.cf-turnstile { margin-top: 0.5rem; }
+.paypal-buttons { border-radius: 8px; overflow: hidden; }
