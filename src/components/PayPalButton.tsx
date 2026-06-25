@@ -46,6 +46,16 @@ export default function PayPalButton(props: PayPalButtonProps) {
   const clientId = import.meta.env.VITE_PAYPAL_CLIENT_ID
   const env = import.meta.env.VITE_PAYPAL_ENV ?? 'sandbox'
 
+  if (!clientId) {
+    return (
+      <div className="rounded-lg border border-red-500/20 bg-red-500/10 p-4">
+        <p className="text-sm text-red-400">
+          PayPal checkout is not configured. Please contact us to complete your booking.
+        </p>
+      </div>
+    )
+  }
+
   return (
     <PayPalScriptProvider
       options={{
