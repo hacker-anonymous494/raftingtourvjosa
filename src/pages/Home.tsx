@@ -143,7 +143,7 @@ function TourCard({ tour }: { tour: Tour }) {
 }
 
 // ─── Gallery lightbox state ───────────────────────────────────────────────────
-function GalleryPlaceholder({ alt, span }: { alt: string; span: string }) {
+function _GalleryPlaceholder({ alt, span }: { alt: string; span: string }) {
   return (
     <div
       className={span}
