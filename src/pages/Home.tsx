@@ -75,14 +75,14 @@ const HOW_IT_WORKS = [
   },
 ]
 
-// Gallery images — replace src with your actual photo URLs
+// Gallery images — updated with public/ folder paths
 const GALLERY = [
-  { src: '', alt: 'Group rafting through rapids on the Vjosa', span: 'col-span-2 row-span-2' },
-  { src: '', alt: 'Kayaking on calm Vjosa waters', span: '' },
-  { src: '', alt: 'Guide leading a raft through Class III rapids', span: '' },
-  { src: '', alt: 'Swimmers in crystal-clear Vjosa river', span: '' },
-  { src: '', alt: 'Canyon walls from the raft', span: '' },
-  { src: '', alt: 'Team celebrating at the take-out', span: 'col-span-2' },
+  { src: '/img-1.jpg', alt: 'Group rafting through rapids on the Vjosa', span: 'col-span-2 row-span-2' },
+  { src: '/img-2.jpg', alt: 'Kayaking on calm Vjosa waters', span: '' },
+  { src: '/img-3.jpg', alt: 'Guide leading a raft through Class III rapids', span: '' },
+  { src: '/img-4.jpg', alt: 'Swimmers in crystal-clear Vjosa river', span: '' },
+  { src: '/img-5.jpg', alt: 'Canyon walls from the raft', span: '' },
+  { src: '/img-6.jpg', alt: 'Team celebrating at the take-out', span: 'col-span-2' },
 ]
 
 // ─── Sub-components ───────────────────────────────────────────────────────────
@@ -142,8 +142,6 @@ function TourCard({ tour }: { tour: Tour }) {
   )
 }
 
-// ─── Gallery lightbox state ───────────────────────────────────────────────────
-
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default function Home() {
@@ -168,15 +166,46 @@ export default function Home() {
     <div className="animate-fade-in" style={{ overflowX: 'hidden' }}>
 
       {/* ════════════════════════════════════════════════════════
-          HERO
+          HERO — with background image from public/this-hero.png
       ════════════════════════════════════════════════════════ */}
-      <section style={{ position: 'relative', minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(160deg,#061410 0%,#0F1A17 50%,#0A1410 100%)' }} />
-        <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(ellipse 70% 55% at 50% 25%,rgba(45,106,79,0.25),transparent 65%)' }} />
-        <div style={{ position: 'absolute', inset: 0, opacity: 0.025, backgroundImage: 'linear-gradient(rgba(76,175,80,1) 1px,transparent 1px),linear-gradient(90deg,rgba(76,175,80,1) 1px,transparent 1px)', backgroundSize: '56px 56px' }} />
+      <section style={{
+        position: 'relative',
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundImage: 'url(/this-hero.png)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}>
+        {/* Dark overlay */}
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          background: 'rgba(10, 20, 16, 0.55)',
+          zIndex: 1,
+        }} />
 
-        <div style={{ position: 'relative', width: '100%', maxWidth: '52rem', margin: '0 auto', padding: '7rem 1.5rem 5rem', textAlign: 'center' }}>
+        {/* Subtle grid (optional) */}
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          opacity: 0.025,
+          backgroundImage: 'linear-gradient(rgba(76,175,80,1) 1px, transparent 1px), linear-gradient(90deg, rgba(76,175,80,1) 1px, transparent 1px)',
+          backgroundSize: '56px 56px',
+          zIndex: 1,
+        }} />
 
+        {/* Content */}
+        <div style={{
+          position: 'relative',
+          zIndex: 2,
+          width: '100%',
+          maxWidth: '52rem',
+          margin: '0 auto',
+          padding: '7rem 1.5rem 5rem',
+          textAlign: 'center',
+        }}>
           {/* Google rating pill */}
           <a href="https://g.co/kgs/yourlink" target="_blank" rel="noopener noreferrer"
             style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '999px', padding: '0.375rem 1rem', marginBottom: '2.25rem', textDecoration: 'none', transition: 'background 0.2s' }}
@@ -215,7 +244,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div style={{ position: 'absolute', bottom: '2rem', left: '50%', transform: 'translateX(-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', opacity: 0.25 }}>
+        <div style={{ position: 'absolute', bottom: '2rem', left: '50%', transform: 'translateX(-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', opacity: 0.25, zIndex: 2 }}>
           <div style={{ width: '1px', height: '2.5rem', background: 'linear-gradient(to bottom,transparent,white,transparent)', animation: 'pulse 2s infinite' }} />
         </div>
       </section>
@@ -461,7 +490,7 @@ export default function Home() {
       </section>
 
       {/* ════════════════════════════════════════════════════════
-          GALLERY
+          GALLERY — using images from public/img-1.jpg to img-6.jpg
       ════════════════════════════════════════════════════════ */}
       <section style={{ ...S.section, ...S.divider }}>
         <div style={S.inner}>
@@ -476,30 +505,46 @@ export default function Home() {
             </a>
           </div>
 
-          {/* Grid — when you have photos, replace GalleryPlaceholder with <img> inside the same div */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gridAutoRows: '200px', gap: '0.75rem' }}>
-            {/* Large feature cell */}
-            <div style={{ gridColumn: 'span 2', gridRow: 'span 2', background: 'linear-gradient(135deg,rgba(26,60,52,0.6),rgba(10,20,16,0.9))', border: '1px solid rgba(255,255,255,0.06)', borderRadius: '0.75rem', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', overflow: 'hidden', cursor: 'pointer', transition: 'border-color 0.2s' }}
-              onMouseEnter={e => (e.currentTarget.style.borderColor = 'rgba(76,175,80,0.35)')}
-              onMouseLeave={e => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)')}
-            >
-              <span style={{ fontSize: '3.5rem', opacity: 0.2 }}>📷</span>
-              <p style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.2)' }}>Your hero photo here</p>
+            {/* Large feature cell using img-1.jpg */}
+            <div style={{
+              gridColumn: 'span 2',
+              gridRow: 'span 2',
+              overflow: 'hidden',
+              borderRadius: '0.75rem',
+              background: 'linear-gradient(135deg,rgba(26,60,52,0.6),rgba(10,20,16,0.9))',
+              position: 'relative',
+            }}>
+              <img
+                src="/img-1.jpg"
+                alt={GALLERY[0].alt}
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              />
             </div>
+
             {/* Small cells */}
-            {GALLERY.slice(1).map((g, i) => (
-              <div key={i} style={{ background: 'linear-gradient(135deg,rgba(26,60,52,0.6),rgba(10,20,16,0.9))', border: '1px solid rgba(255,255,255,0.06)', borderRadius: '0.75rem', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '0.375rem', overflow: 'hidden', cursor: 'pointer', transition: 'border-color 0.2s', ...(i === 4 ? { gridColumn: 'span 2' } : {}) }}
-                onMouseEnter={e => (e.currentTarget.style.borderColor = 'rgba(76,175,80,0.35)')}
-                onMouseLeave={e => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)')}
-              >
-                <span style={{ fontSize: '1.5rem', opacity: 0.2 }}>📷</span>
-                <p style={{ fontSize: '0.65rem', color: 'rgba(255,255,255,0.15)', textAlign: 'center', padding: '0 0.5rem' }}>{g.alt}</p>
-              </div>
-            ))}
+            {GALLERY.slice(1).map((g, i) => {
+              const gridSpan = (i === 4) ? { gridColumn: 'span 2' } : {};
+              return (
+                <div key={i} style={{
+                  overflow: 'hidden',
+                  borderRadius: '0.75rem',
+                  background: 'linear-gradient(135deg,rgba(26,60,52,0.6),rgba(10,20,16,0.9))',
+                  position: 'relative',
+                  ...gridSpan
+                }}>
+                  <img
+                    src={g.src}
+                    alt={g.alt}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  />
+                </div>
+              );
+            })}
           </div>
 
           <p style={{ textAlign: 'center', fontSize: '0.8rem', color: 'rgba(255,255,255,0.2)', marginTop: '1.25rem' }}>
-            Replace placeholders with your actual photos — add <code style={{ background: 'rgba(255,255,255,0.06)', padding: '0.1rem 0.4rem', borderRadius: '4px', fontSize: '0.75rem' }}>src</code> to each gallery item in <code style={{ background: 'rgba(255,255,255,0.06)', padding: '0.1rem 0.4rem', borderRadius: '4px', fontSize: '0.75rem' }}>GALLERY</code> at the top of Home.tsx
+            Add your own images to public/ as img-1.jpg … img-6.jpg
           </p>
         </div>
       </section>
