@@ -27,23 +27,37 @@ const GUIDES = [
   {
     name: 'Luka',
     role: 'Rafting Guide & DJ',
-    emoji: '🎵',
-    bio: 'Full of energy and always ready with music or a joke, Luka makes every trip lively. Guests know him as the dancing guide who keeps the fun flowing.',
+    image: 'https://raftingvjosa.al/wp-content/uploads/2026/06/IMG-20250824-WA0014.jpg',
+    bio: 'Full of energy and always ready with music or a joke, Luka makes every trip lively. Guests know him as the dancing guide who keeps the fun flowing while navigating the rapids with expert precision.',
     years: '6 years on the Vjosa',
   },
   {
-    name: 'Arben',
+    name: 'Erald',
     role: 'Senior River Guide',
-    emoji: '🧭',
-    bio: 'Born in Përmet and raised on the Vjosa, Arben knows every rapid by name. Swift water rescue certified with 10+ years of guiding experience.',
-    years: '10+ years on the Vjosa',
+    image: 'https://raftingvjosa.al/wp-content/uploads/2026/06/IMG-20250824-WA0011.jpg',
+    bio: 'With a calm demeanor and razor-sharp river instincts, Erald has guided hundreds of guests through the Vjosa’s most challenging sections. His attention to detail makes every trip feel personal and safe.',
+    years: '8 years on the Vjosa',
   },
   {
-    name: 'Klara',
-    role: 'Kayak Instructor',
-    emoji: '🛶',
-    bio: 'Certified kayak instructor and nature guide. Klara runs our kayaking tours and knows where to find the best swimming spots and wildflowers.',
+    name: 'Ledio',
+    role: 'Safety & Rescue Specialist',
+    image: 'https://raftingvjosa.al/wp-content/uploads/2026/06/IMG-20250824-WA0015.jpg',
+    bio: 'Ledio’s background in swift-water rescue means you’re in the safest hands possible. He’s the one you want in the back of the raft, reading the river and calling every move with confidence.',
+    years: '5 years on the Vjosa',
+  },
+  {
+    name: 'Klausjo',
+    role: 'Photography Guide & Paddler',
+    image: 'https://raftingvjosa.al/wp-content/uploads/2026/06/IMG-20250824-WA0012.jpg',
+    bio: 'Klausjo has a gift for capturing the perfect moment – whether it’s a splash, a smile, or the golden light on the canyon walls. He paddles with style and makes sure you take home more than just memories.',
     years: '4 years on the Vjosa',
+  },
+  {
+    name: 'Ledjan',
+    role: 'Kayak Instructor & Nature Guide',
+    image: 'https://raftingvjosa.al/wp-content/uploads/2026/06/IMG-20250824-WA0009.jpg',
+    bio: 'Ledjan’s love for the Vjosa runs deep. As a certified kayak instructor, he teaches with patience and joy, helping guests of all skill levels feel at home on the water – and often spots wildlife others miss.',
+    years: '7 years on the Vjosa',
   },
 ]
 
@@ -446,7 +460,7 @@ export default function Home() {
       </section>
 
       {/* ════════════════════════════════════════════════════════
-          MEET THE GUIDES
+          MEET THE GUIDES — modern display with all 5 guides
       ════════════════════════════════════════════════════════ */}
       <section style={{ ...S.section, ...S.darkBg, ...S.divider }}>
         <div style={S.innerNarrow}>
@@ -456,31 +470,72 @@ export default function Home() {
             Local experts who've spent years reading the Vjosa. Your safety and your fun are their only priorities.
           </p>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(220px,1fr))', gap: '1.25rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(200px,1fr))', gap: '1.25rem' }}>
             {GUIDES.map(guide => (
-              <div key={guide.name} className="card" style={{ padding: 0, overflow: 'hidden' }}>
-                {/* Photo placeholder — replace with <img> when you have photos */}
+              <div key={guide.name} className="card" style={{
+                padding: 0,
+                overflow: 'hidden',
+                transition: 'transform 0.3s, box-shadow 0.3s',
+              }}
+                onMouseEnter={e => {
+                  const el = e.currentTarget as HTMLElement;
+                  el.style.transform = 'translateY(-4px)';
+                  el.style.boxShadow = '0 20px 40px rgba(76,175,80,0.08)';
+                }}
+                onMouseLeave={e => {
+                  const el = e.currentTarget as HTMLElement;
+                  el.style.transform = 'translateY(0)';
+                  el.style.boxShadow = 'none';
+                }}
+              >
+                {/* Photo */}
                 <div style={{
                   height: '14rem',
-                  background: 'linear-gradient(135deg,rgba(45,106,79,0.4),rgba(10,20,16,0.8))',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '0.5rem',
+                  overflow: 'hidden',
                   position: 'relative',
+                  background: 'linear-gradient(135deg,rgba(45,106,79,0.4),rgba(10,20,16,0.8))',
                 }}>
-                  <span style={{ fontSize: '3.5rem' }}>{guide.emoji}</span>
-                  <p style={{ fontSize: '0.65rem', color: 'rgba(255,255,255,0.25)', letterSpacing: '0.1em', textTransform: 'uppercase' }}>Photo coming soon</p>
-                  {/* When you have a photo: <img src={guide.photo} alt={guide.name} style={{width:'100%',height:'100%',objectFit:'cover',position:'absolute',inset:0}} /> */}
+                  <img
+                    src={guide.image}
+                    alt={guide.name}
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      transition: 'transform 0.5s',
+                    }}
+                    onMouseEnter={e => (e.currentTarget.style.transform = 'scale(1.05)')}
+                    onMouseLeave={e => (e.currentTarget.style.transform = 'scale(1)')}
+                  />
+                  {/* Subtle gradient overlay */}
+                  <div style={{
+                    position: 'absolute',
+                    inset: 0,
+                    background: 'linear-gradient(to top, rgba(10,20,16,0.6), transparent 40%)',
+                  }} />
                 </div>
                 <div style={{ padding: '1.25rem' }}>
-                  <h3 style={{ fontFamily: '"Playfair Display",serif', fontSize: '1.25rem', fontWeight: 600, color: 'white', marginBottom: '0.125rem' }}>{guide.name}</h3>
-                  <p style={{ fontSize: '0.75rem', color: '#4CAF50', fontWeight: 500, marginBottom: '0.75rem' }}>{guide.role}</p>
-                  <p style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.45)', lineHeight: 1.7, marginBottom: '0.875rem' }}>{guide.bio}</p>
-                  <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.375rem', background: 'rgba(76,175,80,0.08)', borderRadius: '999px', padding: '0.25rem 0.625rem' }}>
-                    <span style={{ color: '#4CAF50', fontSize: '0.625rem' }}>⏱</span>
-                    <span style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.35)' }}>{guide.years}</span>
+                  <h3 style={{ fontFamily: '"Playfair Display",serif', fontSize: '1.1rem', fontWeight: 600, color: 'white', marginBottom: '0.125rem' }}>
+                    {guide.name}
+                  </h3>
+                  <p style={{ fontSize: '0.7rem', color: '#4CAF50', fontWeight: 500, marginBottom: '0.625rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                    {guide.role}
+                  </p>
+                  <p style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.5)', lineHeight: 1.65, marginBottom: '0.75rem' }}>
+                    {guide.bio}
+                  </p>
+                  <div style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.375rem',
+                    background: 'rgba(76,175,80,0.08)',
+                    borderRadius: '999px',
+                    padding: '0.25rem 0.75rem',
+                  }}>
+                    <span style={{ color: '#4CAF50', fontSize: '0.6rem' }}>⏱</span>
+                    <span style={{ fontSize: '0.65rem', color: 'rgba(255,255,255,0.4)', fontWeight: 400 }}>
+                      {guide.years}
+                    </span>
                   </div>
                 </div>
               </div>
