@@ -38,7 +38,7 @@ export default function Navbar() {
               V
             </div>
             <span className="font-display font-semibold text-white text-lg leading-none">
-              Vjosa<span className="text-[#4CAF50]">.</span>
+              Vjosa Rafting Tour<span className="text-[#4CAF50]"></span>
             </span>
           </Link>
 
