@@ -143,32 +143,6 @@ function TourCard({ tour }: { tour: Tour }) {
 }
 
 // ─── Gallery lightbox state ───────────────────────────────────────────────────
-function _GalleryPlaceholder({ alt, span }: { alt: string; span: string }) {
-  return (
-    <div
-      className={span}
-      style={{
-        background: 'linear-gradient(135deg, rgba(26,60,52,0.6), rgba(10,20,16,0.8))',
-        border: '1px solid rgba(255,255,255,0.06)',
-        borderRadius: '0.75rem',
-        overflow: 'hidden',
-        aspectRatio: '4/3',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap: '0.5rem',
-        cursor: 'pointer',
-        transition: 'border-color 0.2s',
-      }}
-      onMouseEnter={e => (e.currentTarget.style.borderColor = 'rgba(76,175,80,0.3)')}
-      onMouseLeave={e => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)')}
-    >
-      <span style={{ fontSize: '2rem', opacity: 0.3 }}>📷</span>
-      <span style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.2)', textAlign: 'center', padding: '0 1rem' }}>{alt}</span>
-    </div>
-  )
-}
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
