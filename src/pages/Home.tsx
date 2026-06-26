@@ -96,7 +96,6 @@ const GALLERY = [
   { src: '/img-3.jpg', alt: 'Guide leading a raft through Class III rapids', span: '' },
   { src: '/img-4.jpg', alt: 'Swimmers in crystal-clear Vjosa river', span: '' },
   { src: '/img-5.jpg', alt: 'Canyon walls from the raft', span: '' },
-  { src: '/img-6.jpg', alt: 'Team celebrating at the take-out', span: 'col-span-2' },
 ]
 
 // ─── Sub-components ───────────────────────────────────────────────────────────
@@ -599,7 +598,7 @@ export default function Home() {
           </div>
 
           <p style={{ textAlign: 'center', fontSize: '0.8rem', color: 'rgba(255,255,255,0.2)', marginTop: '1.25rem' }}>
-            Add your own images to public/ as img-1.jpg … img-6.jpg
+            
           </p>
         </div>
       </section>

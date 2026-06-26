@@ -34,9 +34,12 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16 sm:h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2.5 group">
-            <div className="w-8 h-8 bg-[#4CAF50] rounded-lg flex items-center justify-center font-display font-bold text-white text-sm group-hover:bg-[#2D6A4F] transition-colors">
-              V
-            </div>
+            {/* Logo image instead of the "V" placeholder */}
+            <img
+              src="/logo.jpeg"
+              alt="Vjosa Rafting Tour Logo"
+              className="w-8 h-8 rounded-lg object-cover group-hover:opacity-90 transition-opacity"
+            />
             <span className="font-display font-semibold text-white text-lg leading-none">
               Vjosa Rafting Tour<span className="text-[#4CAF50]"></span>
             </span>
