@@ -187,7 +187,7 @@ export default function Home() {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundImage: 'url(/this-hero.png)',
+        backgroundImage: 'url(/hero-original.jpeg)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}>
