@@ -2,12 +2,10 @@
 import { serve } from 'https://deno.land/std@0.168.0/http/server.ts'
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 import { z } from 'https://esm.sh/zod@3.22.4'
+import nodemailer from 'https://esm.sh/nodemailer@6.9.9'
 
-const corsHeaders = {
-  'Access-Control-Allow-Origin': 'https://vjosaraftingtour.com',
-  'Access-Control-Allow-Methods': 'POST, OPTIONS',
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
-}
+// Import shared CORS
+import { corsHeaders as sharedCors } from '../_shared/cors.ts'
 
 const ContactSchema = z.object({
   name: z.string().min(2).max(100),
@@ -39,12 +37,56 @@ async function verifyTurnstile(token: string, ip: string): Promise<boolean> {
   return data.success === true
 }
 
+// ─── Gmail Email Sender ──────────────────────────────────────
+async function sendGmailEmail(to: string, subject: string, html: string): Promise<void> {
+  const email = Deno.env.get('GMAIL_EMAIL')
+  const pass = Deno.env.get('GMAIL_APP_PASSWORD')
+
+  if (!email || !pass) {
+    console.warn('Gmail credentials missing – email not sent')
+    return
+  }
+
+  const transporter = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 587,
+    secure: false,
+    auth: { user: email, pass },
+  })
+
+  await transporter.sendMail({
+    from: `"Vjosa Rafting Tour" <${email}>`,
+    to,
+    subject,
+    html,
+  })
+}
+
 serve(async (req) => {
-  if (req.method === 'OPTIONS') return new Response('ok', { headers: corsHeaders })
-  if (req.method !== 'POST') return new Response('Method Not Allowed', { status: 405, headers: corsHeaders })
+  // Dynamic CORS
+  const origin = req.headers.get('origin') || ''
+  const allowedOrigins = [
+    'https://vjosaraftingtour.com',
+    'https://vjosaraftingtours.netlify.app',
+    'http://localhost:3000'
+  ]
+  const corsHeaders = {
+    ...sharedCors,
+    'Access-Control-Allow-Origin': allowedOrigins.includes(origin) ? origin : '*',
+  }
+
+  if (req.method === 'OPTIONS') {
+    return new Response('ok', { headers: corsHeaders })
+  }
+
+  if (req.method !== 'POST') {
+    return new Response(JSON.stringify({ error: 'Method Not Allowed' }), {
+      status: 405,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+    })
+  }
 
   const ip = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ?? 'unknown'
-
   const supabase = createClient(
     Deno.env.get('SUPABASE_URL')!,
     Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!,
@@ -57,14 +99,16 @@ serve(async (req) => {
     for (const row of flagRows ?? []) flags[row.key] = row.value
     if (flags['site_enabled'] === false) {
       return new Response(JSON.stringify({ error: 'Service unavailable' }), {
-        status: 503, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        status: 503,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       })
     }
 
     // Rate limit
     if (isRateLimited(ip)) {
       return new Response(JSON.stringify({ error: 'Too many requests.' }), {
-        status: 429, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        status: 429,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       })
     }
 
@@ -73,7 +117,8 @@ serve(async (req) => {
     const parsed = ContactSchema.safeParse(body)
     if (!parsed.success) {
       return new Response(JSON.stringify({ error: 'Invalid input.' }), {
-        status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        status: 400,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       })
     }
     const data = parsed.data
@@ -82,7 +127,8 @@ serve(async (req) => {
     const valid = await verifyTurnstile(data.turnstile_token, ip)
     if (!valid) {
       return new Response(JSON.stringify({ error: 'Security verification failed.' }), {
-        status: 403, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        status: 403,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       })
     }
 
@@ -95,40 +141,31 @@ serve(async (req) => {
       ip_address: ip,
     })
 
-    // Send admin notification email
+    // Send admin notification email via Gmail
     const adminEmail = Deno.env.get('ADMIN_EMAIL') ?? 'admin@vjosaraftingtour.com'
-    const zepto = Deno.env.get('ZEPTO_API_KEY')
-    const fromEmail = Deno.env.get('ZOHO_EMAIL') ?? 'bookings@vjosaraftingtour.com'
+    const emailHtml = `
+      <p><strong>From:</strong> ${data.name} (${data.email})</p>
+      <p><strong>Subject:</strong> ${data.subject}</p>
+      <hr/>
+      <p>${data.message.replace(/\n/g, '<br/>')}</p>
+    `
 
-    if (zepto) {
-      await fetch('https://api.zeptomail.com/v1.1/email', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Zoho-enczapikey ${zepto}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          from: { address: fromEmail, name: 'Vjosa Rafting – Contact Form' },
-          to: [{ email_address: { address: adminEmail } }],
-          reply_to: [{ address: data.email, name: data.name }],
-          subject: `Contact: ${data.subject}`,
-          htmlbody: `
-            <p><strong>From:</strong> ${data.name} (${data.email})</p>
-            <p><strong>Subject:</strong> ${data.subject}</p>
-            <hr/>
-            <p>${data.message.replace(/\n/g, '<br/>')}</p>
-          `,
-        }),
-      }).catch(console.error)
-    }
+    // Non-blocking
+    sendGmailEmail(
+      adminEmail,
+      `Contact: ${data.subject}`,
+      emailHtml
+    ).catch((err) => console.error('Email send error:', err))
 
     return new Response(JSON.stringify({ success: true }), {
-      status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      status: 200,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     })
   } catch (err) {
     console.error('contact error:', err)
     return new Response(JSON.stringify({ error: 'Internal server error.' }), {
-      status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      status: 500,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     })
   }
 })

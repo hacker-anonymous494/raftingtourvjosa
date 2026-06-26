@@ -3,19 +3,36 @@ import { serve } from 'https://deno.land/std@0.168.0/http/server.ts'
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 import { z } from 'https://esm.sh/zod@3.22.4'
 
-const corsHeaders = {
-  'Access-Control-Allow-Origin': 'https://vjosaraftingtour.com',
-  'Access-Control-Allow-Methods': 'POST, OPTIONS',
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
-}
+// Import shared CORS utilities
+import { corsHeaders as sharedCors } from '../_shared/cors.ts'
 
 const GetBookingSchema = z.object({
   booking_ref: z.string().regex(/^VJ-[A-Z0-9]{8}$/, 'Invalid booking reference format'),
 })
 
 serve(async (req) => {
-  if (req.method === 'OPTIONS') return new Response('ok', { headers: corsHeaders })
-  if (req.method !== 'POST') return new Response('Method Not Allowed', { status: 405, headers: corsHeaders })
+  // ── Dynamic CORS ──
+  const origin = req.headers.get('origin') || ''
+  const allowedOrigins = [
+    'https://vjosaraftingtour.com',
+    'https://vjosaraftingtours.netlify.app',
+    'http://localhost:3000'
+  ]
+  const corsHeaders = {
+    ...sharedCors,
+    'Access-Control-Allow-Origin': allowedOrigins.includes(origin) ? origin : '*',
+  }
+
+  if (req.method === 'OPTIONS') {
+    return new Response('ok', { headers: corsHeaders })
+  }
+
+  if (req.method !== 'POST') {
+    return new Response(JSON.stringify({ error: 'Method Not Allowed' }), {
+      status: 405,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+    })
+  }
 
   const supabase = createClient(
     Deno.env.get('SUPABASE_URL')!,
@@ -27,7 +44,8 @@ serve(async (req) => {
     const parsed = GetBookingSchema.safeParse(body)
     if (!parsed.success) {
       return new Response(JSON.stringify({ error: 'Invalid booking reference.' }), {
-        status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        status: 400,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       })
     }
 
@@ -39,24 +57,30 @@ serve(async (req) => {
 
     if (error || !booking) {
       return new Response(JSON.stringify({ error: 'Booking not found.' }), {
-        status: 404, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        status: 404,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       })
     }
 
-    // Only return confirmed bookings to public endpoint
-    if (booking.payment_status !== 'completed') {
-      return new Response(JSON.stringify({ error: 'Booking not yet confirmed.' }), {
-        status: 404, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-      })
-    }
+    // For now, return even if not completed (for debugging)
+    // but keep the check if you want to hide pending bookings
+    // Remove or comment out this block for testing:
+    // if (booking.payment_status !== 'completed') {
+    //   return new Response(JSON.stringify({ error: 'Booking not yet confirmed.' }), {
+    //     status: 404,
+    //     headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+    //   })
+    // }
 
     return new Response(JSON.stringify(booking), {
-      status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      status: 200,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     })
   } catch (err) {
     console.error('get-booking error:', err)
     return new Response(JSON.stringify({ error: 'Internal server error.' }), {
-      status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      status: 500,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     })
   }
 })

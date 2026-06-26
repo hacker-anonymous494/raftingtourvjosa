@@ -3,11 +3,8 @@ import { serve } from 'https://deno.land/std@0.168.0/http/server.ts'
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 import { z } from 'https://esm.sh/zod@3.22.4'
 
-const corsHeaders = {
-  'Access-Control-Allow-Origin': 'https://vjosaraftingtour.com',
-  'Access-Control-Allow-Methods': 'POST, OPTIONS',
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
-}
+// Import shared CORS
+import { corsHeaders as sharedCors } from '../_shared/cors.ts'
 
 const ALLOWED_FLAGS = ['site_enabled', 'booking_enabled', 'payment_enabled', 'maintenance_mode']
 
@@ -17,14 +14,35 @@ const ToggleSchema = z.object({
 })
 
 serve(async (req) => {
-  if (req.method === 'OPTIONS') return new Response('ok', { headers: corsHeaders })
-  if (req.method !== 'POST') return new Response('Method Not Allowed', { status: 405, headers: corsHeaders })
+  // ── Dynamic CORS ──
+  const origin = req.headers.get('origin') || ''
+  const allowedOrigins = [
+    'https://vjosaraftingtour.com',
+    'https://vjosaraftingtours.netlify.app',
+    'http://localhost:3000'
+  ]
+  const corsHeaders = {
+    ...sharedCors,
+    'Access-Control-Allow-Origin': allowedOrigins.includes(origin) ? origin : '*',
+  }
+
+  if (req.method === 'OPTIONS') {
+    return new Response('ok', { headers: corsHeaders })
+  }
+
+  if (req.method !== 'POST') {
+    return new Response(JSON.stringify({ error: 'Method Not Allowed' }), {
+      status: 405,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+    })
+  }
 
   // Verify JWT – must be an authenticated admin user
   const authHeader = req.headers.get('Authorization')
   if (!authHeader?.startsWith('Bearer ')) {
     return new Response(JSON.stringify({ error: 'Unauthorized' }), {
-      status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      status: 401,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     })
   }
 
@@ -37,7 +55,8 @@ serve(async (req) => {
   const { data: { user }, error: authError } = await supabaseAuth.auth.getUser()
   if (authError || !user) {
     return new Response(JSON.stringify({ error: 'Unauthorized' }), {
-      status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      status: 401,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     })
   }
 
@@ -51,7 +70,8 @@ serve(async (req) => {
     const parsed = ToggleSchema.safeParse(body)
     if (!parsed.success) {
       return new Response(JSON.stringify({ error: 'Invalid input.' }), {
-        status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        status: 400,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       })
     }
 
@@ -71,12 +91,14 @@ serve(async (req) => {
     })
 
     return new Response(JSON.stringify({ success: true }), {
-      status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      status: 200,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     })
   } catch (err) {
     console.error('admin-toggle-flags error:', err)
     return new Response(JSON.stringify({ error: 'Internal server error.' }), {
-      status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      status: 500,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     })
   }
 })
