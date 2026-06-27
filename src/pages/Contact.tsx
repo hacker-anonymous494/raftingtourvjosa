@@ -18,6 +18,13 @@ interface FormErrors {
   message?: string
 }
 
+const QUICK_SUBJECTS = [
+  'Group booking inquiry',
+  'Custom trip planning',
+  'Transfer from Tirana',
+  'Other question',
+]
+
 export default function Contact() {
   const [form, setForm] = useState<FormState>({ name: '', email: '', subject: '', message: '' })
   const [errors, setErrors] = useState<FormErrors>({})
@@ -40,18 +47,11 @@ export default function Contact() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     if (!validate()) return
-    if (!turnstileToken) {
-      setSubmitError('Please complete the security verification.')
-      return
-    }
-    if (!checkClientRateLimit('contact', 2, 60_000)) {
-      setSubmitError('Please wait before sending another message.')
-      return
-    }
+    if (!turnstileToken) { setSubmitError('Please complete the security verification.'); return }
+    if (!checkClientRateLimit('contact', 2, 60_000)) { setSubmitError('Please wait before sending another message.'); return }
 
     setSubmitting(true)
     setSubmitError(null)
-
     try {
       await submitContact({
         name: sanitizeInput(form.name),
@@ -70,16 +70,50 @@ export default function Contact() {
     }
   }
 
+  function update(field: keyof FormState, value: string) {
+    setForm(f => ({ ...f, [field]: value }))
+    if (errors[field]) setErrors(e => { const n = { ...e }; delete n[field]; return n })
+  }
+
+  const inputStyle = (hasError: boolean): React.CSSProperties => ({
+    width: '100%',
+    background: 'rgba(255,255,255,0.04)',
+    border: `1px solid ${hasError ? 'rgba(239,68,68,0.5)' : 'rgba(255,255,255,0.1)'}`,
+    borderRadius: '0.75rem',
+    padding: '0.875rem 1rem',
+    color: 'white',
+    fontSize: '0.9rem',
+    outline: 'none',
+    transition: 'border-color 0.2s',
+    boxSizing: 'border-box',
+    fontFamily: 'inherit',
+  })
+
+  const labelStyle: React.CSSProperties = {
+    display: 'block',
+    fontSize: '0.72rem',
+    fontWeight: 600,
+    color: 'rgba(255,255,255,0.45)',
+    letterSpacing: '0.08em',
+    textTransform: 'uppercase',
+    marginBottom: '0.5rem',
+  }
+
+  const errorStyle: React.CSSProperties = {
+    fontSize: '0.72rem', color: '#EF4444', marginTop: '0.375rem',
+  }
+
+  // Success state
   if (success) {
     return (
-      <div className="min-h-screen pt-24 pb-20 flex items-center justify-center animate-fade-in">
-        <div className="card p-10 max-w-md mx-auto text-center">
-          <div className="w-14 h-14 bg-[#4CAF50]/20 rounded-full flex items-center justify-center mx-auto mb-5">
-            <span className="text-2xl">✉️</span>
+      <div style={{ minHeight: '100vh', paddingTop: '6rem', paddingBottom: '5rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div style={{ textAlign: 'center', padding: '3rem', maxWidth: '28rem' }}>
+          <div style={{ width: '4.5rem', height: '4.5rem', borderRadius: '50%', background: 'rgba(76,175,80,0.15)', border: '1px solid rgba(76,175,80,0.25)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.75rem', fontSize: '1.75rem' }}>
+            ✉️
           </div>
-          <h2 className="font-display text-2xl font-semibold text-white mb-3">Message sent</h2>
-          <p className="text-white/50 text-sm mb-6">
-            We usually reply within a few hours. Check your inbox (and spam folder) for our response.
+          <h2 style={{ fontFamily: '"Playfair Display",serif', fontSize: '2rem', fontWeight: 700, color: 'white', marginBottom: '0.875rem' }}>Message sent</h2>
+          <p style={{ color: 'rgba(255,255,255,0.45)', fontSize: '0.9rem', lineHeight: 1.8, marginBottom: '2rem' }}>
+            We usually reply within a few hours during season. Check your inbox — and spam folder — for our response.
           </p>
           <button
             onClick={() => { setSuccess(false); setForm({ name: '', email: '', subject: '', message: '' }); resetTurnstile() }}
@@ -93,132 +127,197 @@ export default function Contact() {
   }
 
   return (
-    <div className="min-h-screen pt-20 pb-20 animate-fade-in">
-      {/* Header */}
-      <section className="py-16 border-b border-white/5">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6">
-          <p className="section-eyebrow mb-3">Get in touch</p>
-          <h1 className="font-display text-4xl sm:text-5xl font-bold text-white mb-4">Contact us</h1>
-          <p className="text-white/50 max-w-md">
-            Questions about a tour, group bookings, or custom trips? We're based in Përmet and respond quickly during season.
+    <div style={{ minHeight: '100vh', paddingTop: '5rem' }}>
+
+      {/* ─── Header ─────────────────────────────────────────── */}
+      <section style={{ padding: '5rem 1.5rem 4rem', borderBottom: '1px solid rgba(255,255,255,0.05)', position: 'relative', overflow: 'hidden' }}>
+        <div style={{ position: 'absolute', inset: 0, backgroundImage: 'url(/img-4.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', opacity: 0.07 }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 40%, rgba(10,20,16,1))' }} />
+        <div style={{ maxWidth: '72rem', margin: '0 auto', position: 'relative', zIndex: 1 }}>
+          <p style={{ fontSize: '0.68rem', fontWeight: 600, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#4CAF50', marginBottom: '1rem' }}>
+            Get in touch
+          </p>
+          <h1 style={{ fontFamily: '"Playfair Display",serif', fontSize: 'clamp(2.5rem,6vw,4.5rem)', fontWeight: 800, color: 'white', lineHeight: 1.0, letterSpacing: '-0.02em', marginBottom: '1rem' }}>
+            Contact us
+          </h1>
+          <p style={{ color: 'rgba(255,255,255,0.45)', maxWidth: '32rem', lineHeight: 1.8, fontSize: '0.9rem' }}>
+            Group bookings, custom trips, or just a question about the river — we're based in Përmet and respond quickly during season.
           </p>
         </div>
       </section>
 
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-10">
-          {/* Form */}
-          <div className="lg:col-span-3">
-            <form onSubmit={handleSubmit} noValidate className="card p-6 sm:p-8">
-              <h2 className="font-display text-xl font-semibold text-white mb-6">Send a message</h2>
+      {/* ─── Content ─────────────────────────────────────────── */}
+      <div style={{ maxWidth: '72rem', margin: '0 auto', padding: '4rem 1.5rem 5rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(300px,1fr))', gap: '3rem', alignItems: 'start' }}>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {/* ─── Form ─────────────────────────────────────────── */}
+          <div>
+            <form onSubmit={handleSubmit} noValidate style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+
+              {/* Quick subject pills */}
+              <div>
+                <span style={labelStyle}>What's this about?</span>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+                  {QUICK_SUBJECTS.map(s => (
+                    <button
+                      key={s}
+                      type="button"
+                      onClick={() => update('subject', s)}
+                      style={{
+                        fontSize: '0.75rem', padding: '0.4rem 0.875rem',
+                        borderRadius: '999px', cursor: 'pointer', transition: 'all 0.2s',
+                        border: `1px solid ${form.subject === s ? '#4CAF50' : 'rgba(255,255,255,0.1)'}`,
+                        background: form.subject === s ? 'rgba(76,175,80,0.15)' : 'transparent',
+                        color: form.subject === s ? '#4CAF50' : 'rgba(255,255,255,0.4)',
+                      }}
+                    >
+                      {s}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Subject free text */}
+              <div>
+                <label style={labelStyle}>Or type your subject</label>
+                <input
+                  style={inputStyle(!!errors.subject)}
+                  placeholder="Custom subject…"
+                  value={form.subject}
+                  onChange={e => update('subject', e.target.value)}
+                  onFocus={e => { (e.target as HTMLInputElement).style.borderColor = '#4CAF50' }}
+                  onBlur={e => { (e.target as HTMLInputElement).style.borderColor = errors.subject ? 'rgba(239,68,68,0.5)' : 'rgba(255,255,255,0.1)' }}
+                />
+                {errors.subject && <p style={errorStyle}>{errors.subject}</p>}
+              </div>
+
+              {/* Name + Email row */}
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
                 <div>
-                  <label className="label">Your name</label>
+                  <label style={labelStyle}>Name</label>
                   <input
-                    className={`input-field ${errors.name ? 'error-field' : ''}`}
-                    placeholder="Arta Krasniqi"
+                    style={inputStyle(!!errors.name)}
+                    placeholder="Your name"
                     value={form.name}
-                    onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
+                    onChange={e => update('name', e.target.value)}
+                    onFocus={e => { (e.target as HTMLInputElement).style.borderColor = '#4CAF50' }}
+                    onBlur={e => { (e.target as HTMLInputElement).style.borderColor = errors.name ? 'rgba(239,68,68,0.5)' : 'rgba(255,255,255,0.1)' }}
                   />
-                  {errors.name && <p className="error-text">{errors.name}</p>}
+                  {errors.name && <p style={errorStyle}>{errors.name}</p>}
                 </div>
                 <div>
-                  <label className="label">Email</label>
+                  <label style={labelStyle}>Email</label>
                   <input
                     type="email"
-                    className={`input-field ${errors.email ? 'error-field' : ''}`}
+                    style={inputStyle(!!errors.email)}
                     placeholder="you@example.com"
                     value={form.email}
-                    onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
+                    onChange={e => update('email', e.target.value)}
+                    onFocus={e => { (e.target as HTMLInputElement).style.borderColor = '#4CAF50' }}
+                    onBlur={e => { (e.target as HTMLInputElement).style.borderColor = errors.email ? 'rgba(239,68,68,0.5)' : 'rgba(255,255,255,0.1)' }}
                   />
-                  {errors.email && <p className="error-text">{errors.email}</p>}
+                  {errors.email && <p style={errorStyle}>{errors.email}</p>}
                 </div>
               </div>
 
-              <div className="mt-4">
-                <label className="label">Subject</label>
-                <input
-                  className={`input-field ${errors.subject ? 'error-field' : ''}`}
-                  placeholder="Group booking inquiry"
-                  value={form.subject}
-                  onChange={e => setForm(f => ({ ...f, subject: e.target.value }))}
-                />
-                {errors.subject && <p className="error-text">{errors.subject}</p>}
-              </div>
-
-              <div className="mt-4">
-                <label className="label">Message</label>
+              {/* Message */}
+              <div>
+                <label style={labelStyle}>Message</label>
                 <textarea
-                  className={`input-field resize-none ${errors.message ? 'error-field' : ''}`}
-                  rows={5}
-                  placeholder="Tell us what you're planning…"
+                  style={{ ...inputStyle(!!errors.message), resize: 'none' }}
+                  rows={6}
+                  placeholder="Tell us what you're planning — group size, dates, any questions…"
                   value={form.message}
-                  onChange={e => setForm(f => ({ ...f, message: e.target.value }))}
+                  onChange={e => update('message', e.target.value)}
+                  onFocus={e => { (e.target as HTMLTextAreaElement).style.borderColor = '#4CAF50' }}
+                  onBlur={e => { (e.target as HTMLTextAreaElement).style.borderColor = errors.message ? 'rgba(239,68,68,0.5)' : 'rgba(255,255,255,0.1)' }}
                 />
-                {errors.message && <p className="error-text">{errors.message}</p>}
+                {errors.message && <p style={errorStyle}>{errors.message}</p>}
               </div>
 
-              <div className="mt-4">
-                <label className="label">Security check</label>
+              {/* Turnstile */}
+              <div>
+                <label style={labelStyle}>Security check</label>
                 <div ref={containerRef} />
-                {turnstileError && <p className="error-text">{turnstileError}</p>}
+                {turnstileError && <p style={errorStyle}>{turnstileError}</p>}
               </div>
 
               {submitError && (
-                <div className="mt-4 p-3 bg-red-500/10 border border-red-500/20 rounded-lg">
-                  <p className="text-red-400 text-sm">{submitError}</p>
+                <div style={{ padding: '0.875rem 1rem', background: 'rgba(239,68,68,0.08)', border: '1px solid rgba(239,68,68,0.2)', borderRadius: '0.75rem' }}>
+                  <p style={{ color: '#EF4444', fontSize: '0.825rem' }}>{submitError}</p>
                 </div>
               )}
 
               <button
                 type="submit"
                 disabled={submitting || !turnstileToken}
-                className="btn-primary w-full mt-6"
+                className="btn-primary"
+                style={{ padding: '0.9375rem', fontSize: '0.9rem', width: '100%', marginTop: '0.25rem' }}
               >
-                {submitting ? <LoadingSpinner size="sm" /> : 'Send message'}
+                {submitting ? <LoadingSpinner size="sm" /> : 'Send message →'}
               </button>
+
+              <p style={{ fontSize: '0.72rem', color: 'rgba(255,255,255,0.2)', textAlign: 'center' }}>
+                We usually reply within a few hours during season (April–October).
+              </p>
             </form>
           </div>
 
-          {/* Info sidebar */}
-          <aside className="lg:col-span-2 space-y-5">
-            <div className="card p-5">
-              <h3 className="font-display font-semibold text-white mb-4">Reach us directly</h3>
-              <ul className="space-y-3 text-sm text-white/50">
-                <li className="flex items-start gap-3">
-                  <span>✉️</span>
-                  <a href="mailto:bookings@vjosaraftingtour.com" className="hover:text-white/80 transition-colors">
-                    bookings@vjosaraftingtour.com
-                  </a>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span>📍</span>
-                  <span>Përmet, Gjirokastër County, Albania</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span>📅</span>
-                  <span>Season: April – October</span>
-                </li>
-              </ul>
-            </div>
+          {/* ─── Sidebar ──────────────────────────────────────── */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
 
-            <div className="card p-5">
-              <h3 className="font-display font-semibold text-white mb-3">Common questions</h3>
-              <div className="space-y-4">
+            {/* Direct contact */}
+            <div style={{ padding: '1.75rem', borderRadius: '1.25rem', border: '1px solid rgba(255,255,255,0.08)', background: 'rgba(255,255,255,0.02)' }}>
+              <h3 style={{ fontFamily: '"Playfair Display",serif', fontWeight: 600, color: 'white', marginBottom: '1.375rem', fontSize: '1.05rem' }}>Reach us directly</h3>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                 {[
-                  { q: 'Do I need experience?', a: 'No. Our easy and moderate tours are suitable for complete beginners.' },
-                  { q: 'What should I bring?', a: 'A swimsuit, sunscreen, and a change of clothes. We provide everything else.' },
-                  { q: 'Group discounts?', a: 'Yes — for 8 or more people, contact us for custom pricing.' },
-                ].map(faq => (
-                  <div key={faq.q}>
-                    <p className="text-sm font-medium text-white/70">{faq.q}</p>
-                    <p className="text-xs text-white/40 mt-1">{faq.a}</p>
+                  { icon: '✉️', label: 'Email', value: 'bookings@vjosaraftingtour.com', href: 'mailto:bookings@vjosaraftingtour.com' },
+                  { icon: '📍', label: 'Location', value: 'Përmet, Gjirokastër County, Albania', href: undefined },
+                  { icon: '📅', label: 'Season', value: 'April – October', href: undefined },
+                ].map(item => (
+                  <div key={item.label} style={{ display: 'flex', gap: '0.875rem', alignItems: 'flex-start' }}>
+                    <span style={{ fontSize: '1rem', marginTop: '0.1rem', flexShrink: 0 }}>{item.icon}</span>
+                    <div>
+                      <div style={{ fontSize: '0.65rem', color: 'rgba(255,255,255,0.3)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '0.2rem' }}>{item.label}</div>
+                      {item.href
+                        ? <a href={item.href} style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.65)', textDecoration: 'none', transition: 'color 0.2s' }}
+                          onMouseEnter={e => (e.currentTarget as HTMLAnchorElement).style.color = '#4CAF50'}
+                          onMouseLeave={e => (e.currentTarget as HTMLAnchorElement).style.color = 'rgba(255,255,255,0.65)'}
+                        >{item.value}</a>
+                        : <span style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.55)' }}>{item.value}</span>
+                      }
+                    </div>
                   </div>
                 ))}
               </div>
             </div>
-          </aside>
+
+            {/* FAQ */}
+            <div style={{ padding: '1.75rem', borderRadius: '1.25rem', border: '1px solid rgba(255,255,255,0.08)', background: 'rgba(255,255,255,0.02)' }}>
+              <h3 style={{ fontFamily: '"Playfair Display",serif', fontWeight: 600, color: 'white', marginBottom: '1.25rem', fontSize: '1.05rem' }}>Common questions</h3>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.125rem' }}>
+                {[
+                  { q: 'Do I need experience?', a: 'No. Our easy and moderate tours are suitable for complete beginners.' },
+                  { q: 'What should I bring?', a: 'A swimsuit, sunscreen, and a change of clothes. We provide everything else.' },
+                  { q: 'Group discounts?', a: 'Yes — for 8 or more people, contact us for custom pricing.' },
+                  { q: 'What\'s the best time to visit?', a: 'June–September for warm water and clear days. April and October are quieter and equally beautiful.' },
+                ].map(faq => (
+                  <div key={faq.q} style={{ paddingBottom: '1.125rem', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+                    <p style={{ fontSize: '0.825rem', fontWeight: 600, color: 'rgba(255,255,255,0.7)', marginBottom: '0.375rem' }}>{faq.q}</p>
+                    <p style={{ fontSize: '0.775rem', color: 'rgba(255,255,255,0.38)', lineHeight: 1.7 }}>{faq.a}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Vjosa note */}
+            <div style={{ padding: '1.375rem', borderRadius: '1rem', background: 'rgba(76,175,80,0.05)', border: '1px solid rgba(76,175,80,0.15)' }}>
+              <p style={{ fontSize: '0.78rem', color: 'rgba(255,255,255,0.45)', lineHeight: 1.75 }}>
+                🌿 We're a small local team based in Përmet. Every message goes directly to the guides — not a call center.
+              </p>
+            </div>
+
+          </div>
         </div>
       </div>
     </div>
