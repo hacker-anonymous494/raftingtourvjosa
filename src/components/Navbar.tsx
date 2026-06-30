@@ -16,9 +16,14 @@ export default function Navbar() {
     setIsOpen(false)
   }, [location.pathname])
 
+  // ─── All top-level links ──────────────────────────────────
   const navLinks = [
     { to: '/', label: 'Home' },
     { to: '/tours', label: 'Tours' },
+    { to: '/trip-builder', label: 'Build Your Trip' },
+    { to: '/guides', label: 'Guides' },
+    { to: '/why-vjosa', label: 'Why Vjosa' },
+    { to: '/faq', label: 'FAQ' },
     { to: '/contact', label: 'Contact' },
   ]
 
@@ -34,14 +39,13 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16 sm:h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2.5 group">
-            {/* Logo image instead of the "V" placeholder */}
             <img
               src="/logo.jpeg"
               alt="Vjosa Rafting Tour Logo"
               className="w-8 h-8 rounded-lg object-cover group-hover:opacity-90 transition-opacity"
             />
             <span className="font-display font-semibold text-white text-lg leading-none">
-              Vjosa Rafting Tour<span className="text-[#4CAF50]"></span>
+              Vjosa Rafting Tour
             </span>
           </Link>
 
@@ -81,7 +85,7 @@ export default function Navbar() {
           >
             <span className={`block w-5 h-0.5 bg-current transition-all duration-200 ${isOpen ? 'rotate-45 translate-y-1.5' : ''}`} />
             <span className={`block w-5 h-0.5 bg-current mt-1.5 transition-all duration-200 ${isOpen ? 'opacity-0' : ''}`} />
-            <span className={`block w-5 h-0.5 bg-current mt-1.5 transition-all duration-200 ${isOpen ? '-rotate-45 -translate-y-1.5' : ''}`} />
+            <span className={`block w-5 h-0.5 bg-current mt-1.5 transition-all duration-200 ${isOpen ? '-rotate-45 translate-y-1.5' : ''}`} />
           </button>
         </div>
 

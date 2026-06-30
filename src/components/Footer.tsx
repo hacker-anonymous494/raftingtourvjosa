@@ -20,13 +20,17 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Links */}
+          {/* Links - now includes all new pages */}
           <div>
             <p className="text-xs font-semibold tracking-widest uppercase text-[#4CAF50] mb-4">Explore</p>
             <ul className="space-y-2">
               {[
                 { to: '/', label: 'Home' },
                 { to: '/tours', label: 'Tours & Pricing' },
+                { to: '/trip-builder', label: 'Build Your Trip' },
+                { to: '/guides', label: 'Our Guides' },
+                { to: '/why-vjosa', label: 'Why the Vjosa' },
+                { to: '/faq', label: 'FAQ' },
                 { to: '/contact', label: 'Contact Us' },
               ].map(link => (
                 <li key={link.to}>

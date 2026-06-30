@@ -8,6 +8,12 @@ import BookingConfirmation from './pages/BookingConfirmation'
 import Contact from './pages/Contact'
 import Admin from './pages/Admin'
 import Maintenance from './pages/Maintenance'
+// ─── New pages ───────────────────────────────────────────────
+import Faq from './pages/Faq'
+import Guides from './pages/Guides'
+import GuideProfile from './pages/GuideProfile'
+import TripBuilder from './pages/TripBuilder'
+import WhyVjosa from './pages/WhyVjosa'
 import { getSystemFlags } from './lib/api'
 
 type AppState = 'loading' | 'maintenance' | 'ok'
@@ -21,7 +27,6 @@ export default function App() {
       .catch(() => setState('ok'))
   }, [])
 
-  // Router wraps everything — flags check happens inside, no remounting
   return (
     <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
       {state === 'loading' && (
@@ -41,6 +46,15 @@ export default function App() {
             <Route path="/tours/:slug" element={<Booking />} />
             <Route path="/booking/confirmation" element={<BookingConfirmation />} />
             <Route path="/contact" element={<Contact />} />
+
+            {/* ─── New routes ─────────────────────────────────── */}
+            <Route path="/faq" element={<Faq />} />
+            <Route path="/guides" element={<Guides />} />
+            <Route path="/guides/:slug" element={<GuideProfile />} />
+            <Route path="/trip-builder" element={<TripBuilder />} />
+            <Route path="/why-vjosa" element={<WhyVjosa />} />
+
+            {/* Catch-all */}
             <Route path="*" element={<Navigate to="/" replace />} />
           </Route>
         </Routes>
