@@ -31,11 +31,36 @@ const GOOGLE_REVIEWS = [
 ]
 
 const GUIDES = [
-  { name: 'Luka', role: 'Rafting Guide & DJ', image: 'https://raftingvjosa.al/wp-content/uploads/2026/06/IMG-20250824-WA0014.jpg', years: '6 years' },
-  { name: 'Erald', role: 'Senior River Guide', image: 'https://raftingvjosa.al/wp-content/uploads/2026/06/IMG-20250824-WA0011.jpg', years: '8 years' },
-  { name: 'Ledio', role: 'Safety & Rescue', image: 'https://raftingvjosa.al/wp-content/uploads/2026/06/IMG-20250824-WA0015.jpg', years: '5 years' },
-  { name: 'Klausjo', role: 'Photography Guide', image: 'https://raftingvjosa.al/wp-content/uploads/2026/06/IMG-20250824-WA0012.jpg', years: '4 years' },
-  { name: 'Ledjan', role: 'Kayak Instructor', image: 'https://raftingvjosa.al/wp-content/uploads/2026/06/IMG-20250824-WA0009.jpg', years: '7 years' },
+  { name: 'Erald', role: 'Head River Guide', image: 'https://randomuser.me/api/portraits/men/32.jpg', years: '8 years', bio: 'Grew up in Përmet. Knows every rapid by name.' },
+  { name: 'Luka', role: 'Rafting Guide', image: 'https://randomuser.me/api/portraits/men/45.jpg', years: '6 years', bio: 'Swiftwater rescue certified, plays guitar at camp.' },
+  { name: 'Megi', role: 'Safety & Rescue Lead', image: 'https://randomuser.me/api/portraits/women/65.jpg', years: '5 years', bio: 'Former national kayak team, leads every safety briefing.' },
+  { name: 'Klausjo', role: 'Photography Guide', image: 'https://randomuser.me/api/portraits/men/52.jpg', years: '4 years', bio: 'Shoots your trip from the water, free same-day gallery.' },
+  { name: 'Sara', role: 'Kayak Instructor', image: 'https://randomuser.me/api/portraits/women/44.jpg', years: '7 years', bio: 'Teaches first-timers to roll a kayak in one afternoon.' },
+]
+
+// ─── River journey stats (animated reveal) ───────────────────────────────────
+
+const RIVER_FACTS = [
+  { value: 272, suffix: 'km', label: 'Total length, source to sea — entirely free-flowing' },
+  { value: 12, suffix: '', label: 'Tributaries feeding the main channel along its course' },
+  { value: 2023, suffix: '', label: 'Year the Vjosa became a National Park', isYear: true },
+  { value: 3, suffix: '', label: 'Countries the watershed touches: Greece, Albania, the Ionian Sea' },
+]
+
+const RIVER_STOPS = [
+  { km: '0', name: 'Pindus Mountains, Greece', desc: 'The Aoös is born from snowmelt high in the Pindus range.' },
+  { km: '80', name: 'Crosses into Albania', desc: 'Becomes the Vjosa, widening through the Përmet valley.' },
+  { km: '145', name: 'Përmet — our base', desc: 'Canyon walls, gravel bars, and the rapids we run.' },
+  { km: '272', name: 'Adriatic Sea', desc: 'Empties into the sea near Narta Lagoon, untouched by a single dam.' },
+]
+
+const OFFERINGS = [
+  { icon: '🛶', title: 'Half-Day Descent', desc: 'A 2.5-hour run through the Class II–III canyon stretch. The classic first-timer route.', tag: 'Most popular' },
+  { icon: '🌄', title: 'Full-Day Expedition', desc: 'The complete Përmet canyon, two swim stops, riverside lunch, and the longest stretch of whitewater we run.', tag: '' },
+  { icon: '🚣', title: 'Kayak Coaching', desc: 'One-on-one instruction in inflatable kayaks for people who want to paddle their own line.', tag: '' },
+  { icon: '👨‍👩‍👧', title: 'Family Float', desc: 'A gentler, slower-moving route built for kids 8+ and first-time paddlers of any age.', tag: '' },
+  { icon: '📷', title: 'Photo & Film Trips', desc: 'A guide shoots from a support raft and hands you a same-day gallery, no extra charge.', tag: '' },
+  { icon: '🏕️', title: 'Multi-Day Camps', desc: 'Two-day descents with a wild camp on a gravel beach under the canyon walls.', tag: 'New for 2026' },
 ]
 
 const HOW_IT_WORKS = [
@@ -56,12 +81,32 @@ const FAQS = [
 ]
 
 const GALLERY = [
-  { src: '/img-1.jpg', alt: 'Group rafting through rapids on the Vjosa' },
-  { src: '/img-2.jpg', alt: 'Kayaking on calm Vjosa waters' },
-  { src: '/img-3.jpg', alt: 'Guide leading a raft through Class III rapids' },
-  { src: '/img-4.jpg', alt: 'Swimmers in crystal-clear Vjosa river' },
-  { src: '/img-5.jpg', alt: 'Canyon walls from the raft' },
+  { src: 'https://images.unsplash.com/photo-1530866495561-507c9faab9f2?auto=format&fit=crop&w=1200&q=80', alt: 'Group rafting through rapids on the Vjosa' },
+  { src: 'https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=900&q=80', alt: 'Kayaking on calm Vjosa waters' },
+  { src: 'https://images.unsplash.com/photo-1622030411594-aa39d2434550?auto=format&fit=crop&w=900&q=80', alt: 'Guide leading a raft through Class III rapids' },
+  { src: 'https://images.unsplash.com/photo-1502786129293-79981df4e689?auto=format&fit=crop&w=900&q=80', alt: 'Swimmers in crystal-clear Vjosa river' },
+  { src: 'https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?auto=format&fit=crop&w=900&q=80', alt: 'Canyon walls from the raft' },
 ]
+
+// ─── Hook: animated count-up on reveal ───────────────────────────────────────
+
+function useCountUp(target: number, visible: boolean, duration = 1400) {
+  const [val, setVal] = useState(0)
+  useEffect(() => {
+    if (!visible) return
+    let raf: number
+    const start = performance.now()
+    const tick = (now: number) => {
+      const t = Math.min(1, (now - start) / duration)
+      const eased = 1 - Math.pow(1 - t, 3)
+      setVal(Math.round(target * eased))
+      if (t < 1) raf = requestAnimationFrame(tick)
+    }
+    raf = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(raf)
+  }, [visible, target, duration])
+  return val
+}
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -190,6 +235,119 @@ function TourStrip({ tour, index }: { tour: Tour; index: number }) {
   )
 }
 
+// ─── River profile: animated SVG flow + journey stops ───────────────────────
+
+function RiverProfile() {
+  const { ref, visible } = useReveal()
+  const [active, setActive] = useState(2)
+
+  return (
+    <div ref={ref} style={{ borderRadius: '1.25rem', border: '1px solid rgba(255,255,255,0.08)', background: 'rgba(255,255,255,0.02)', padding: '1.75rem', overflow: 'hidden' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.25rem' }}>
+        <span style={{ fontSize: '0.7rem', fontWeight: 600, color: 'rgba(255,255,255,0.4)', letterSpacing: '0.08em', textTransform: 'uppercase' }}>Source → Sea</span>
+        <span style={{ fontSize: '0.7rem', color: '#4CAF50', fontFamily: 'monospace' }}>272km</span>
+      </div>
+
+      {/* Flowing river SVG */}
+      <svg viewBox="0 0 320 90" width="100%" height="90" style={{ display: 'block', marginBottom: '0.5rem' }}>
+        <path
+          d="M5,70 C 50,70 60,20 100,20 S 150,75 190,75 S 240,15 270,15 S 300,40 315,40"
+          fill="none" stroke="rgba(76,175,80,0.18)" strokeWidth="6" strokeLinecap="round"
+        />
+        <path
+          d="M5,70 C 50,70 60,20 100,20 S 150,75 190,75 S 240,15 270,15 S 300,40 315,40"
+          fill="none" stroke="#4CAF50" strokeWidth="2.5" strokeLinecap="round"
+          strokeDasharray="10 8"
+          style={{ animation: visible ? 'flowDash 3s linear infinite' : 'none' }}
+        />
+        {RIVER_STOPS.map((s, i) => {
+          const x = [8, 100, 190, 312][i]
+          const y = [70, 20, 75, 40][i]
+          return (
+            <g key={s.km} onMouseEnter={() => setActive(i)} style={{ cursor: 'pointer' }}>
+              <circle cx={x} cy={y} r={active === i ? 7 : 5} fill={active === i ? '#4CAF50' : '#0a1410'} stroke="#4CAF50" strokeWidth="2"
+                style={{ transition: 'r 0.2s' }} />
+            </g>
+          )
+        })}
+      </svg>
+
+      {/* Km markers */}
+      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1.5rem' }}>
+        {RIVER_STOPS.map((s, i) => (
+          <button key={s.km} onClick={() => setActive(i)}
+            style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, color: active === i ? '#4CAF50' : 'rgba(255,255,255,0.3)', fontSize: '0.68rem', fontFamily: 'monospace', transition: 'color 0.2s' }}>
+            {s.km}km
+          </button>
+        ))}
+      </div>
+
+      {/* Active stop detail */}
+      <div style={{ borderTop: '1px solid rgba(255,255,255,0.06)', paddingTop: '1.25rem', minHeight: '4.5rem' }}>
+        <p style={{ fontFamily: '"Playfair Display",serif', fontWeight: 600, color: 'white', fontSize: '1rem', marginBottom: '0.375rem' }}>
+          {RIVER_STOPS[active].name}
+        </p>
+        <p style={{ fontSize: '0.82rem', color: 'rgba(255,255,255,0.45)', lineHeight: 1.7 }}>
+          {RIVER_STOPS[active].desc}
+        </p>
+      </div>
+
+      <style>{`@keyframes flowDash { to { stroke-dashoffset: -36; } }`}</style>
+    </div>
+  )
+}
+
+function RiverFactCell({ fact }: { fact: typeof RIVER_FACTS[number] }) {
+  const { ref, visible } = useReveal()
+  const count = useCountUp(fact.value, visible)
+  return (
+    <div ref={ref} style={{ background: 'rgba(255,255,255,0.02)', padding: '1.75rem 1.5rem' }}>
+      <div style={{ fontFamily: '"Playfair Display",serif', fontSize: '2rem', fontWeight: 700, color: 'white', lineHeight: 1, marginBottom: '0.625rem' }}>
+        {fact.isYear ? count : count.toLocaleString()}{fact.suffix}
+      </div>
+      <div style={{ fontSize: '0.78rem', color: 'rgba(255,255,255,0.4)', lineHeight: 1.6 }}>{fact.label}</div>
+    </div>
+  )
+}
+
+// ─── Offer card: icon-driven hover animation ─────────────────────────────────
+
+function OfferCard({ offer }: { offer: typeof OFFERINGS[number] }) {
+  const [hover, setHover] = useState(false)
+  return (
+    <div
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+      style={{
+        position: 'relative',
+        padding: '1.75rem',
+        borderRadius: '1.125rem',
+        border: `1px solid ${hover ? 'rgba(76,175,80,0.35)' : 'rgba(255,255,255,0.07)'}`,
+        background: hover ? 'rgba(76,175,80,0.05)' : 'rgba(255,255,255,0.02)',
+        transition: 'border-color 0.3s, background 0.3s, transform 0.3s',
+        transform: hover ? 'translateY(-4px)' : 'none',
+        height: '100%',
+      }}
+    >
+      {offer.tag && (
+        <span style={{ position: 'absolute', top: '1.25rem', right: '1.25rem', fontSize: '0.62rem', fontWeight: 700, color: '#4CAF50', background: 'rgba(76,175,80,0.12)', border: '1px solid rgba(76,175,80,0.25)', borderRadius: '999px', padding: '0.2rem 0.625rem', letterSpacing: '0.04em', textTransform: 'uppercase' }}>
+          {offer.tag}
+        </span>
+      )}
+      <div style={{
+        fontSize: '1.75rem', marginBottom: '1.125rem',
+        transform: hover ? 'scale(1.15) translateY(-2px)' : 'none',
+        transition: 'transform 0.3s',
+        display: 'inline-block',
+      }}>
+        {offer.icon}
+      </div>
+      <h3 style={{ fontFamily: '"Playfair Display",serif', fontWeight: 600, color: 'white', fontSize: '1.05rem', marginBottom: '0.625rem' }}>{offer.title}</h3>
+      <p style={{ fontSize: '0.82rem', color: 'rgba(255,255,255,0.45)', lineHeight: 1.75 }}>{offer.desc}</p>
+    </div>
+  )
+}
+
 // ─── Main component ───────────────────────────────────────────────────────────
 
 export default function Home() {
@@ -245,7 +403,7 @@ export default function Home() {
         {/* Background image with parallax */}
         <div style={{
           position: 'absolute', inset: 0,
-          backgroundImage: 'url(/img-1.jpg)',
+          backgroundImage: 'url(https://images.unsplash.com/photo-1530866495561-507c9faab9f2?auto=format&fit=crop&w=2000&q=80)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           transform: `translateY(${scrollY * 0.3}px)`,
@@ -325,41 +483,65 @@ export default function Home() {
       </section>
 
       {/* ══════════════════════════════════════════════════════
-          ABOUT THE VJOSA — editorial two-col
+          ABOUT THE VJOSA — animated river profile
       ══════════════════════════════════════════════════════ */}
       <section style={{ ...S.section, ...S.divider }}>
-        <div style={{ ...S.inner, display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(280px,1fr))', gap: '5rem', alignItems: 'center' }}>
-          <Reveal>
-            <span style={S.eyebrow}>The River</span>
-            <h2 style={{ ...S.h2, marginBottom: '1.5rem' }}>
-              The last free-flowing river in Europe
-            </h2>
-            <p style={{ color: 'rgba(255,255,255,0.5)', lineHeight: 1.9, marginBottom: '1.25rem', fontSize: '0.95rem' }}>
-              The Vjosa flows 272km untouched by dams or diversions, declared a Wild River National Park in 2023. Its waters cut through limestone canyons, gravel beaches, and ancient forest just outside the valley town of Përmet.
-            </p>
-            <p style={{ color: 'rgba(255,255,255,0.5)', lineHeight: 1.9, marginBottom: '2rem', fontSize: '0.95rem' }}>
-              We've been guiding here since 2012 — before the national park existed. Every route we run is chosen to give you the most spectacular section: canyon walls, turquoise pools, and enough whitewater to make your arms work.
-            </p>
-            <Link to="/tours" className="btn-secondary" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
-              View all tours <span>→</span>
-            </Link>
-          </Reveal>
+        <div style={S.inner}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(280px,1fr))', gap: '4rem', alignItems: 'start', marginBottom: '4rem' }}>
+            <Reveal>
+              <span style={S.eyebrow}>The River</span>
+              <h2 style={{ ...S.h2, marginBottom: '1.5rem' }}>
+                The last free-flowing river in Europe
+              </h2>
+              <p style={{ color: 'rgba(255,255,255,0.5)', lineHeight: 1.9, marginBottom: '1.25rem', fontSize: '0.95rem' }}>
+                The Vjosa runs 272km from the Pindus Mountains in Greece to the Adriatic — without a single dam, weir, or diversion along the way. It was declared Europe's first Wild River National Park in 2023, protecting the braided channels, gravel bars, and limestone canyons that most European rivers lost a century ago.
+              </p>
+              <p style={{ color: 'rgba(255,255,255,0.5)', lineHeight: 1.9, marginBottom: '2rem', fontSize: '0.95rem' }}>
+                We've been guiding the Përmet canyon section since 2014 — before the park existed. Every route is chosen for the same reason the river itself was protected: it's simply too good to alter.
+              </p>
+              <Link to="/tours" className="btn-secondary" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
+                View all tours <span>→</span>
+              </Link>
+            </Reveal>
 
-          <Reveal delay={150}>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.875rem' }}>
-              <div style={{ gridRow: 'span 2', borderRadius: '1rem', overflow: 'hidden', height: '22rem' }}>
-                <img src="/img-2.jpg" alt="Vjosa river canyon" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-              </div>
-              <div style={{ borderRadius: '1rem', overflow: 'hidden', height: '10.5rem' }}>
-                <img src="/img-3.jpg" alt="Rafting the Vjosa" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-              </div>
-              <div style={{ borderRadius: '1rem', overflow: 'hidden', height: '10.5rem' }}>
-                <img src="/img-4.jpg" alt="Swimming in the Vjosa" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-              </div>
+            <Reveal delay={150}>
+              <RiverProfile />
+            </Reveal>
+          </div>
+
+          {/* Animated stat counters */}
+          <Reveal delay={100}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(180px,1fr))', gap: '1px', background: 'rgba(255,255,255,0.06)', borderRadius: '1rem', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.06)' }}>
+              {RIVER_FACTS.map(f => (
+                <RiverFactCell key={f.label} fact={f} />
+              ))}
             </div>
           </Reveal>
         </div>
       </section>
+
+      {/* ══════════════════════════════════════════════════════
+          WHAT WE OFFER — animated icon grid
+      ══════════════════════════════════════════════════════ */}
+      <section style={{ ...S.section, ...S.divider, background: 'rgba(0,0,0,0.15)' }}>
+        <div style={S.inner}>
+          <Reveal>
+            <span style={S.eyebrow}>What We Offer</span>
+            <h2 style={{ ...S.h2, marginBottom: '0.875rem' }}>Six ways down the river</h2>
+            <p style={{ color: 'rgba(255,255,255,0.45)', fontSize: '0.95rem', maxWidth: '34rem', marginBottom: '3rem' }}>
+              From a first paddle stroke to a two-day wild camp — every trip runs on the same stretch of protected canyon, just at a different pace.
+            </p>
+          </Reveal>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(260px,1fr))', gap: '1.25rem' }}>
+            {OFFERINGS.map((o, i) => (
+              <Reveal key={o.title} delay={i * 70}>
+                <OfferCard offer={o} />
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
 
       {/* ══════════════════════════════════════════════════════
           TOURS LIST
@@ -445,7 +627,7 @@ export default function Home() {
       <section style={{ ...S.divider, padding: '0' }}>
         <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', gridTemplateRows: '280px 280px', gap: '3px' }}>
           <div style={{ gridRow: 'span 2', overflow: 'hidden' }}>
-            <img src="/img-1.jpg" alt={GALLERY[0].alt} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform 0.6s', cursor: 'pointer' }}
+            <img src={GALLERY[0].src} alt={GALLERY[0].alt} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform 0.6s', cursor: 'pointer' }}
               onMouseEnter={e => (e.currentTarget as HTMLImageElement).style.transform = 'scale(1.04)'}
               onMouseLeave={e => (e.currentTarget as HTMLImageElement).style.transform = 'none'}
             />
@@ -484,7 +666,8 @@ export default function Home() {
                   </div>
                   <h3 style={{ fontFamily: '"Playfair Display",serif', fontWeight: 600, color: 'white', fontSize: '1rem', marginBottom: '0.25rem' }}>{g.name}</h3>
                   <p style={{ fontSize: '0.72rem', color: 'rgba(255,255,255,0.4)', marginBottom: '0.25rem' }}>{g.role}</p>
-                  <p style={{ fontSize: '0.68rem', color: '#4CAF50' }}>{g.years} on the Vjosa</p>
+                  <p style={{ fontSize: '0.68rem', color: '#4CAF50', marginBottom: '0.5rem' }}>{g.years} on the Vjosa</p>
+                  <p style={{ fontSize: '0.72rem', color: 'rgba(255,255,255,0.35)', lineHeight: 1.6 }}>{g.bio}</p>
                 </div>
               </Reveal>
             ))}
@@ -631,7 +814,7 @@ export default function Home() {
           FINAL CTA — full-bleed with image
       ══════════════════════════════════════════════════════ */}
       <section style={{ position: 'relative', padding: '8rem 1.5rem', textAlign: 'center', overflow: 'hidden', ...S.divider }}>
-        <div style={{ position: 'absolute', inset: 0, backgroundImage: 'url(/img-5.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', opacity: 0.25 }} />
+        <div style={{ position: 'absolute', inset: 0, backgroundImage: 'url(https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?auto=format&fit=crop&w=1600&q=80)', backgroundSize: 'cover', backgroundPosition: 'center', opacity: 0.25 }} />
         <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse at center, rgba(10,20,16,0.5), rgba(10,20,16,0.95))' }} />
         <div style={{ position: 'relative', zIndex: 1, maxWidth: '36rem', margin: '0 auto' }}>
           <Reveal>
