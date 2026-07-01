@@ -15,7 +15,8 @@
     "headline2": "Vjosa",
     "subtitle": "Stromschnellen der Klasse II–III, Canyonwände und kristallklares Wasser im geschützten Wildflusspark Albaniens. Keine Erfahrung nötig.",
     "ctaExplore": "Touren entdecken",
-    "ctaAsk": "Frage stellen"
+    "ctaAsk": "Frage stellen",
+    "parkTag": "Vjosa-Wildfluss-Nationalpark · Albanien"
   },
   "tours": {
     "title": "Unsere Touren",
@@ -81,7 +82,37 @@
     "specialty": "Spezialgebiet",
     "funFact": "Wusstest du schon?",
     "fullTeam": "Das gesamte Team",
-    "allGuides": "Alle Guides ansehen"
+    "allGuides": "Alle Guides ansehen",
+    "erald": {
+      "role": "Leitender Flussguide",
+      "bio": "Aufgewachsen in Përmet, zwanzig Minuten vom Einstieg entfernt. Erald begann als Sicherheitskajaker mit 19 und hat diesen Canyon öfter befahren, als er zählen kann. Er wählt die Tagesroute, indem er das Morgenwasser liest, nicht nach Plan.",
+      "specialty": "Lesen von Wasserständen und Entscheidungen in Echtzeit",
+      "fact": "Kann alle 14 Stromschnellen des Përmet-Abschnitts benennen, ohne auf den Fluss zu schauen."
+    },
+    "luka": {
+      "role": "Rafting-Guide",
+      "bio": "Zertifiziert für Wildwasserrettung und inoffizieller Camp-DJ. Luka kam vom Leistungsschwimmen zum Rafting – er hat das Wasser nie wirklich verlassen. Anfänger bekommen immer Luka. Er hat die Gabe, Nervosität vor der ersten Abfahrt in Gelächter zu verwandeln.",
+      "specialty": "Anfängergruppen und unsichere Paddler",
+      "fact": "Spielt bei jedem Übernachtungslager Gitarre. Bring Wünsche mit."
+    },
+    "megi": {
+      "role": "Leiterin Sicherheit & Rettung",
+      "bio": "Ehemaliges Mitglied der albanischen Kajak-Nationalmannschaft. Megi entwirft heute jedes Sicherheitsbriefing, das Gäste vor dem Start erhalten. Sie ist den gesamten 272 km langen Vjosa solo gepaddelt – in sechs Tagen – um das Wasser persönlich zu kartieren.",
+      "specialty": "Wildwasserrettungsprotokoll und Risikobewertung",
+      "fact": "Hat den gesamten Vjosa solo von der Quelle bis zum Meer in 6 Tagen befahren."
+    },
+    "klausjo": {
+      "role": "Fotografie-Guide",
+      "bio": "Fotografiert von einem Begleitkajak aus, während du die Stromschnellen befährst. Studierte Fotografie in Tirana, bevor er nach Përmet zog. Seine Galerie vom selben Tag bedeutet, dass du mit dem gesamten Trip in deiner Kamera nach Hause gehst.",
+      "specialty": "Actionfotografie und Bearbeitung am selben Tag vom Wasser aus",
+      "fact": "Persönliches Archiv mit über 40.000 Vjosa-Flussfotos."
+    },
+    "sara": {
+      "role": "Kajak-Instruktorin",
+      "bio": "Bringt Anfängern in einer einzigen Nachmittagssitzung das Kajakrollen bei. Sara trainiert am Wochenende auch den Përmet-Jugendpaddelclub – ein Projekt, das sie 2020 selbst ins Leben gerufen hat.",
+      "specialty": "Kajak-Coaching für alle Levels",
+      "fact": "Hat ihrer Großmutter im Alter von 68 Jahren das Kajakfahren beigebracht."
+    }
   },
   "common": {
     "loading": "Wird geladen…",
@@ -90,6 +121,305 @@
     "learnMore": "Mehr erfahren",
     "seeAllTours": "Alle Touren ansehen",
     "viewAll": "Alle ansehen",
-    "readMore": "Weiterlesen"
+    "readMore": "Weiterlesen",
+    "scroll": "Scrolle"
+  },
+  "home": {
+    "stats": {
+      "reviews": "Fünf-Sterne-Bewertungen",
+      "years": "Jahre auf dem Vjosa",
+      "riverLength": "Geschützter Wildfluss",
+      "season": "Saison geöffnet"
+    },
+    "about": {
+      "eyebrow": "Der Fluss",
+      "title": "Der letzte frei fließende Fluss Europas",
+      "paragraph1": "Der Vjosa fließt 272 km von den Pindus-Bergen in Griechenland bis zur Adria – ohne einen einzigen Damm, Wehr oder Umleitung. Er wurde 2023 zum ersten Wildfluss-Nationalpark Europas erklärt und schützt die verzweigten Kanäle, Kiesbänke und Kalkstein-Canyons, die die meisten europäischen Flüsse vor einem Jahrhundert verloren haben.",
+      "paragraph2": "Wir führen den Përmet-Canyon-Abschnitt seit 2014 – bevor es den Park gab. Jede Route wird aus demselben Grund gewählt, aus dem der Fluss selbst geschützt wurde: Er ist einfach zu schön, um ihn zu verändern.",
+      "cta": "Alle Touren anzeigen"
+    },
+    "riverFacts": {
+      "length": "Gesamtlänge von der Quelle bis zum Meer – vollständig frei fließend",
+      "tributaries": "Nebenflüsse, die den Hauptkanal speisen",
+      "year": "Jahr, in dem der Vjosa zum Nationalpark erklärt wurde",
+      "countries": "Länder, die das Einzugsgebiet berührt: Griechenland, Albanien, das Ionische Meer"
+    },
+    "riverProfile": {
+      "sourceToSea": "Quelle → Meer",
+      "stop0.name": "Pindus-Gebirge, Griechenland",
+      "stop0.desc": "Der Aoös entspringt aus der Schneeschmelze im hohen Pindus.",
+      "stop80.name": "Übertritt nach Albanien",
+      "stop80.desc": "Wird zum Vjosa, der sich durch das Përmet-Tal verbreitert.",
+      "stop145.name": "Përmet — unsere Basis",
+      "stop145.desc": "Canyonwände, Kiesbänke und die Stromschnellen, die wir befahren.",
+      "stop272.name": "Adriatisches Meer",
+      "stop272.desc": "Mündet bei der Narta-Lagune ins Meer, unberührt von einem einzigen Damm."
+    },
+    "offerings": {
+      "eyebrow": "Was wir anbieten",
+      "title": "Sechs Wege den Fluss hinab",
+      "subtitle": "Vom ersten Paddelschlag bis zum zweitägigen Wildcamp – jede Tour verläuft auf demselben geschützten Canyon-Abschnitt, nur in einem anderen Tempo.",
+      "items": {
+        "halfDay": {
+          "title": "Halbtagesfahrt",
+          "desc": "Eine 2,5-stündige Fahrt durch den Class II–III Canyon. Die klassische Route für Ersttäter.",
+          "tag": "Am beliebtesten"
+        },
+        "fullDay": {
+          "title": "Ganztages-Expedition",
+          "desc": "Der komplette Përmet-Canyon, zwei Schwimmstopps, Mittagessen am Flussufer und die längste Wildwasserstrecke, die wir befahren.",
+          "tag": ""
+        },
+        "kayak": {
+          "title": "Kayak-Coaching",
+          "desc": "Einzelunterricht in aufblasbaren Kajaks für alle, die ihr eigenes Boot paddeln möchten.",
+          "tag": ""
+        },
+        "family": {
+          "title": "Familien-Float",
+          "desc": "Eine sanftere, langsamere Route für Kinder ab 8 Jahren und Anfänger jeden Alters.",
+          "tag": ""
+        },
+        "photo": {
+          "title": "Foto- und Film-Touren",
+          "desc": "Ein Guide fotografiert von einem Begleitboot und stellt dir noch am selben Tag eine Galerie zur Verfügung – ohne Aufpreis.",
+          "tag": ""
+        },
+        "multiDay": {
+          "title": "Mehrtägige Camps",
+          "desc": "Zweitägige Abfahrten mit Wildcamp auf einem Kiesstrand unter den Canyonwänden.",
+          "tag": "Neu für 2026"
+        }
+      }
+    },
+    "howItWorks": {
+      "eyebrow": "Am Tag der Tour",
+      "title": "Was dich erwartet",
+      "steps": {
+        "meet": {
+          "title": "Ankunft & Ausrüstung",
+          "desc": "Check-in im Vjosa Rafting Center in Përmet. Du erhältst Neoprenanzug, Helm, Schwimmweste und Paddel. Komm 10–15 Minuten früher."
+        },
+        "transfer": {
+          "title": "Transfer & Briefing",
+          "desc": "Wir bringen dich zum Einstieg. Die Guides erklären Paddeltechnik, Sicherheit und wie man den Fluss liest."
+        },
+        "warmup": {
+          "title": "Aufwärmen",
+          "desc": "Start auf einem ruhigen Abschnitt – spüre die Strömung, finde deinen Rhythmus und genieße die Canyonwände. Erster Schwimmstopp, wenn die Bedingungen es zulassen."
+        },
+        "rapids": {
+          "title": "Stromschnellen & Felsensprünge",
+          "desc": "Befahre die Class II–III Stromschnellen durch den letzten wilden Fluss Europas. Optionale Felsensprünge an der Schwimmpause."
+        },
+        "return": {
+          "title": "Rückkehr nach Përmet",
+          "desc": "Kleinbusse holen dich am Ausstieg ab und bringen dich zum Center. Deine Fotos sind noch am selben Tag zum Download bereit."
+        }
+      }
+    },
+    "gallery": {
+      "eyebrow": "Der Fluss durch unsere Linse",
+      "title": "Auf dem Wasser",
+      "scrollHint": "Scrolle zum Entdecken",
+      "clickToExpand": "Zum Vergrößern klicken",
+      "img1": {
+        "label": "Die Canyon-Fahrt",
+        "alt": "Gruppe, die eine Class III-Stromschnelle durchfährt"
+      },
+      "img2": {
+        "label": "Ruhe zwischen den Tropfen",
+        "alt": "Kajakfahrer im ruhigen türkisfarbenen Vjosa-Wasser"
+      },
+      "img3": {
+        "label": "Geführt von den Besten",
+        "alt": "Guide führt das Raft durch Stromschnellen"
+      },
+      "img4": {
+        "label": "Der Schwimmstopp",
+        "alt": "Kristallklares Wasser beim Schwimmstopp"
+      },
+      "img5": {
+        "label": "Kalkstein-Canyon",
+        "alt": "Canyonwände über den Köpfen"
+      },
+      "img6": {
+        "label": "Wildcamp-Nacht",
+        "alt": "Sonnenuntergang am Kiesstrand-Camp"
+      }
+    },
+    "reviews": {
+      "eyebrow": "Verifizierte Bewertungen",
+      "title": "Geschichten vom Fluss",
+      "tripadvisorLabel": "TripAdvisor — Ausgezeichnet",
+      "readAll": "Alle Bewertungen auf TripAdvisor lesen"
+    },
+    "sustainability": {
+      "eyebrow": "Unser Engagement",
+      "title": "Wir schützen, was wir befahren",
+      "text": "Der Vjosa ist eines der letzten intakten Flussökosysteme Europas. Wir arbeiten ausschließlich innerhalb der Genehmigungen des Nationalparks, führen abfallfreie Touren durch und unterstützen aktiv die Naturschutzarbeit von EcoAlbania. Kein Einwegplastik. Keine Lärmbelästigung. Keine Abkürzungen.",
+      "items": {
+        "plastic": "Kein Einwegplastik auf jeder Tour",
+        "trace": "Hinterlasse keine Spuren – Flussprotokolle",
+        "wildlife": "Schutzzonen für Fische und Wildtiere",
+        "partner": "Partner des EcoAlbania-Naturschutzprogramms"
+      }
+    },
+    "finalCta": {
+      "eyebrow": "Die Touren sind im Juli und August schnell ausgebucht",
+      "title": "Bereit fürs Wasser?",
+      "subtitle": "Sichere dir jetzt deinen Termin – oder kontaktiere uns bei Fragen auf WhatsApp.",
+      "bookButton": "Tour buchen",
+      "contactButton": "Kontakt aufnehmen"
+    },
+    "faq": {
+      "experience.q": "Brauche ich Erfahrung?",
+      "experience.a": "Überhaupt nicht. Unsere Touren sind für absolute Anfänger geeignet. Vor jeder Abfahrt gibt es eine ausführliche Sicherheitseinweisung.",
+      "bring.q": "Was soll ich mitbringen?",
+      "bring.a": "Badeanzug, Handtuch und Sonnencreme. Wir stellen Neoprenanzüge, Helme, Schwimmwesten, Paddel und Trockentaschen.",
+      "getThere.q": "Wie komme ich nach Përmet?",
+      "getThere.a": "~3 Stunden mit dem Auto von Tirana oder mit dem täglichen Furgon von Qafa e Botës. Wir können bei Transfers beraten.",
+      "group.q": "Können wir als Gruppe buchen?",
+      "group.a": "Ja – Gruppen ab 6 Personen erhalten einen eigenen Guide und Vorzugspreise. Kontaktiere uns vor der Online-Buchung.",
+      "cancellation.q": "Wie ist die Stornierungsrichtlinie?",
+      "cancellation.a": "Vollständige Rückerstattung bis 24 Stunden vor Abfahrt. Du kannst einmal kostenlos innerhalb von 24 Stunden umbuchen.",
+      "children.q": "Ist es sicher für Kinder?",
+      "children.a": "Ja. Klassische Touren sind für Kinder ab 8 Jahren geeignet. Die Guides passen die Route an das Komfortniveau der Gruppe an."
+    }
+  },
+  "contact": {
+  "header": {
+    "eyebrow": "Nimm Kontakt auf",
+    "title": "Kontaktiere uns",
+    "subtitle": "Gruppenbuchungen, maßgeschneiderte Reisen oder einfach eine Frage zum Fluss — wir sitzen in Përmet und antworten schnell während der Saison."
+  },
+  "form": {
+    "quickSubjects": {
+      "label": "Worum geht es?",
+      "group": "Anfrage für Gruppenbuchung",
+      "custom": "Individuelle Reiseplanung",
+      "transfer": "Transfer von Tirana",
+      "other": "Andere Frage"
+    },
+    "labels": {
+      "subjectFree": "Oder gib dein Betreff ein",
+      "name": "Name",
+      "email": "E-Mail",
+      "message": "Nachricht",
+      "security": "Sicherheitsprüfung"
+    },
+    "placeholders": {
+      "subject": "Benutzerdefinierter Betreff…",
+      "name": "Dein Name",
+      "email": "du@beispiel.com",
+      "message": "Erzähle uns, was du planst — Gruppengröße, Daten, Fragen…"
+    },
+    "errors": {
+      "name": "Gib deinen Namen ein",
+      "email": "Gib eine gültige E-Mail ein",
+      "subject": "Gib einen Betreff ein",
+      "message": "Die Nachricht muss mindestens 10 Zeichen lang sein",
+      "turnstile": "Bitte schließe die Sicherheitsüberprüfung ab.",
+      "rateLimit": "Bitte warte, bevor du eine weitere Nachricht sendest.",
+      "generic": "Senden fehlgeschlagen. Bitte versuche es erneut."
+    },
+    "submit": "Nachricht senden →",
+    "footerNote": "Wir antworten normalerweise innerhalb weniger Stunden während der Saison (April–Oktober)."
+  },
+  "success": {
+    "title": "Nachricht gesendet",
+    "text": "Wir antworten normalerweise innerhalb weniger Stunden während der Saison. Überprüfe deinen Posteingang — und den Spam-Ordner — auf unsere Antwort.",
+    "button": "Eine weitere Nachricht senden"
+  },
+  "sidebar": {
+    "reachUs": "Kontaktiere uns direkt",
+    "emailLabel": "E-Mail",
+    "locationLabel": "Standort",
+    "locationValue": "Përmet, Kreis Gjirokastra, Albanien",
+    "seasonLabel": "Saison",
+    "seasonValue": "April – Oktober",
+    "faq": {
+      "title": "Häufige Fragen",
+      "faq1": {
+        "q": "Brauche ich Erfahrung?",
+        "a": "Nein. Unsere einfachen und mittleren Touren sind für absolute Anfänger geeignet."
+      },
+      "faq2": {
+        "q": "Was soll ich mitbringen?",
+        "a": "Badeanzug, Sonnencreme und Wechselkleidung. Wir stellen alles andere."
+      },
+      "faq3": {
+        "q": "Gruppenrabatte?",
+        "a": "Ja — für 8 oder mehr Personen kontaktiere uns für individuelle Preise."
+      },
+      "faq4": {
+        "q": "Wann ist die beste Zeit für einen Besuch?",
+        "a": "Juni–September für warmes Wasser und klare Tage. April und Oktober sind ruhiger und genauso schön."
+      }
+    },
+    "note": "🌿 Wir sind ein kleines lokales Team mit Sitz in Përmet. Jede Nachricht geht direkt an die Guides — nicht an ein Callcenter."
   }
+},
+"whyVjosa": {
+  "hero": {
+    "eyebrow": "Für umweltbewusste Reisende",
+    "title": "Warum der Vjosa<br />schützenswert ist",
+    "subtitle": "Jede Buchung finanziert einen Fluss, der fast nicht mehr existiert hätte. Das ist die Ökologie, der Kampf und der Nationalpark-Status hinter dem Wasser, das du befahren wirst."
+  },
+  "ecology": {
+    "eyebrow": "Die Ökologie",
+    "title": "Ein lebendiger, sich verändernder Fluss",
+    "facts": {
+      "fish": {
+        "title": "Über 40 Fischarten",
+        "desc": "Einschließlich des endemischen Vjosa-Nasen, der nirgendwo sonst auf der Erde vorkommt."
+      },
+      "species": {
+        "title": "Über 1.100 erfasste Arten",
+        "desc": "Im gesamten Vjosa-Einzugsgebiet: Vögel, Säugetiere, Amphibien und Wasserinsekten – einige nur hier zu finden."
+      },
+      "morphology": {
+        "title": "Verflochtene Flussmorphologie",
+        "desc": "Einer der letzten europäischen Flüsse, der noch frei seine Kanäle, Kiesbänke und Inseln natürlich verlagern kann."
+      },
+      "dams": {
+        "title": "270 km, null Staudämme",
+        "desc": "Ein durchgehender, ununterbrochener Korridor von den Pindus-Bergen bis zur Adria."
+      }
+    }
+  },
+  "timeline": {
+    "eyebrow": "Der Kampf um seinen Schutz",
+    "title": "Von den Staudammplänen zum Nationalpark",
+    "items": {
+      "fight": {
+        "title": "Der Kampf beginnt",
+        "desc": "Pläne für eine Reihe von Wasserkraftdämmen am Vjosa lösen eine lokale und internationale Kampagne zum Schutz des Flusses aus."
+      },
+      "patagonia": {
+        "title": "Patagonia schaltet sich ein",
+        "desc": "Die Kampagne 'Blue Heart of Europe', unterstützt von Patagonia und EcoAlbania, lenkt die weltweite Aufmerksamkeit auf den Vjosa."
+      },
+      "shelved": {
+        "title": "Staudammpläne ad acta gelegt",
+        "desc": "Die albanische Regierung verpflichtet sich, den Fluss zu schützen, anstatt ihn zu stauen."
+      },
+      "park": {
+        "title": "Nationalpark ausgerufen",
+        "desc": "Der Vjosa wird Europas erster Wildfluss-Nationalpark und schützt 12.727 Hektar entlang seines Verlaufs."
+      },
+      "today": {
+        "title": "Sanfter Tourismus",
+        "desc": "Lizenzierte Anbieter wie wir führen Touren unter den Parkregeln durch, die den Naturschutz finanzieren, ohne den Fluss zu beeinträchtigen."
+      }
+    }
+  },
+  "commitment": {
+    "eyebrow": "Unser Engagement",
+    "title": "Tourismus, der fördert, nicht bedroht",
+    "paragraph1": "Wir arbeiten innerhalb des Genehmigungssystems des Vjosa-Wildfluss-Nationalparks, das die Anzahl der Anbieter und Touren begrenzt. Ein Teil jeder Buchung unterstützt die laufende Flussüberwachung und Interessenvertretung von EcoAlbania.",
+    "paragraph2": "Keine Motorboote. Keine dauerhaften Strukturen am Ufer. Keine Gruppe, die ohne eine 'Hinterlasse keine Spuren'-Einweisung startet.",
+    "cta": "Unsere Touren ansehen"
+  }
+}
 }

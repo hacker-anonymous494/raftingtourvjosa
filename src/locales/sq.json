@@ -15,7 +15,8 @@
     "headline2": "Vjosë",
     "subtitle": "Rrepëza klasa II–III, mure kanjoni dhe ujë kristal në parkun kombëtar të lumit të egër të Shqipërisë. Nuk kërkohet përvojë.",
     "ctaExplore": "Shiko turet",
-    "ctaAsk": "Bëj një pyetje"
+    "ctaAsk": "Bëj një pyetje",
+    "parkTag": "Parku Kombëtar i Lumit të Egër Vjosa · Shqipëri"
   },
   "tours": {
     "title": "Turet tona",
@@ -81,7 +82,37 @@
     "specialty": "Specialiteti",
     "funFact": "Fakt argëtues",
     "fullTeam": "I gjithë ekipi",
-    "allGuides": "Shiko të gjitha guidat"
+    "allGuides": "Shiko të gjitha guidat",
+    "erald": {
+      "role": "Guida Kryesore e Lumit",
+      "bio": "U rrit në Përmet, njëzet minuta nga hyrja. Erald filloi si kajakist sigurie në moshën 19 vjeç dhe e ka kaluar këtë kanion më shumë herë se sa mund të numërojë. Ai zgjedh rrugën e ditës duke lexuar ujin e mëngjesit, jo një plan.",
+      "specialty": "Leximi i niveleve të ujit dhe vendimeve në kohë reale",
+      "fact": "Mund të emërojë të 14 rrepëzat në pjesën e Përmetit pa parë lumin."
+    },
+    "luka": {
+      "role": "Guida Rafting",
+      "bio": "I certifikuar për shpëtim në ujëra të shpejta dhe DJ-ja jozyrtare e kampit. Luka erdhi në rafting nga noti konkurrues – ai nuk e la kurrë vërtet ujin. Fillestarët gjithmonë marrin Lukën. Ai ka dhuntinë t'i shndërrojë nervat në të qeshura para rënies së parë.",
+      "specialty": "Grupet fillestare dhe vozitësit nervozë",
+      "fact": "Luan kitarë në çdo kamp gjatë natës. Sillni kërkesat tuaja."
+    },
+    "megi": {
+      "role": "Përgjegjëse Sigurie & Shpëtimi",
+      "bio": "Ish-anëtare e ekipit kombëtar shqiptar të kajakut. Megi tani dizajnon çdo informim sigurie që marrin mysafirët para nisjes. Ajo ka vozitur të gjithë 272 km të Vjosës solo – në gjashtë ditë – për të hartuar ujin personalisht.",
+      "specialty": "Protokolli i shpëtimit në ujëra të shpejta dhe vlerësimi i rrezikut",
+      "fact": "Ka vozitur të gjithë Vjosën solo, nga burimi në det, për 6 ditë."
+    },
+    "klausjo": {
+      "role": "Guida Fotografike",
+      "bio": "Fotografon nga një kajak mbështetës ndërsa ju kaloni rrepëzat. Studioi fotografi në Tiranë përpara se të transferohej në Përmet me kohë të plotë. Galeria e tij e së njëjtës ditë do të thotë që ju largoheni me të gjithë udhëtimin në kamerën tuaj.",
+      "specialty": "Fotografia aksion dhe përpunimi në të njëjtën ditë nga uji",
+      "fact": "Arkiv personal me mbi 40,000 foto të lumit Vjosa."
+    },
+    "sara": {
+      "role": "Instruktore Kajaku",
+      "bio": "Mëson fillestarët të rrotullojnë një kajak në një seancë pasdite. Sara gjithashtu stërvit klubin e vozitjes së të rinjve në Përmet gjatë fundjavave – një projekt që ajo e filloi vetë në 2020.",
+      "specialty": "Trajnim kajaku për të gjitha nivelet",
+      "fact": "E mësoi gjyshen e saj të voziste kajak në moshën 68 vjeç."
+    }
   },
   "common": {
     "loading": "Duke ngarkuar…",
@@ -90,6 +121,305 @@
     "learnMore": "Mëso më shumë",
     "seeAllTours": "Shiko të gjitha turet",
     "viewAll": "Shiko të gjitha",
-    "readMore": "Lexo më shumë"
+    "readMore": "Lexo më shumë",
+    "scroll": "Lëviz poshtë"
+  },
+  "home": {
+    "stats": {
+      "reviews": "Recensione me pesë yje",
+      "years": "Vite në Vjosë",
+      "riverLength": "Lumi i egër i mbrojtur",
+      "season": "Sezoni i hapur"
+    },
+    "about": {
+      "eyebrow": "Lumi",
+      "title": "Lumi i fundit me rrjedhje të lirë në Evropë",
+      "paragraph1": "Vjosa rrjedh 272 km nga malet Pindus në Greqi deri në Adriatik – pa asnjë digë, pendë ose devijim rrugës. U shpall Parku Kombëtar i Lumit të Egër të Evropës në vitin 2023, duke mbrojtur kanalet e endura, bregun e zhavorrit dhe kanioneve gëlqerore që shumica e lumenjve evropianë i humbën një shekull më parë.",
+      "paragraph2": "Ne udhëheqim pjesën e kanionit të Përmetit që nga viti 2014 – para se parku të ekzistonte. Çdo rrugë zgjidhet për të njëjtën arsye që lumi u mbrojt: është thjesht shumë i bukur për t'u ndryshuar.",
+      "cta": "Shiko të gjitha turnetë"
+    },
+    "riverFacts": {
+      "length": "Gjatësia totale, nga burimi në det – plotësisht me rrjedhje të lirë",
+      "tributaries": "Degë që ushqejnë kanalin kryesor gjatë rrugës",
+      "year": "Viti kur Vjosa u bë Park Kombëtar",
+      "countries": "Vendet që prek pellgu: Greqia, Shqipëria, Deti Jon"
+    },
+    "riverProfile": {
+      "sourceToSea": "Burimi → Deti",
+      "stop0.name": "Malet Pindus, Greqi",
+      "stop0.desc": "Aoös lind nga shkrirja e borës në lartësitë e Pindus.",
+      "stop80.name": "Kalimi në Shqipëri",
+      "stop80.desc": "Bëhet Vjosa, duke u zgjeruar nëpër luginën e Përmetit.",
+      "stop145.name": "Përmet — baza jonë",
+      "stop145.desc": "Muret e kanionit, bregu i zhavorrit dhe rrepëzat që ne kalojmë.",
+      "stop272.name": "Deti Adriatik",
+      "stop272.desc": "Der-dhet në det pranë Lagunës së Nartës, i paprekur nga ndonjë digë."
+    },
+    "offerings": {
+      "eyebrow": "Çfarë ofrojmë",
+      "title": "Gjashtë mënyra për të zbritur lumin",
+      "subtitle": "Nga goditja e parë me vozë deri në një kamp dy-ditor në breg të lumit – çdo tur zhvillohet në të njëjtin seksion të kanionit të mbrojtur, vetëm me një ritëm të ndryshëm.",
+      "items": {
+        "halfDay": {
+          "title": "Zbritja e Gjysmë Ditës",
+          "desc": "Një udhëtim 2.5-orësh përmes kanionit të klasit II–III. Rruga klasike për fillestarët.",
+          "tag": "Më i popullarizuar"
+        },
+        "fullDay": {
+          "title": "Ekspedita e Ditës së Plotë",
+          "desc": "Kanioni i plotë i Përmetit, dy ndalesa noti, drekë në breg të lumit dhe pjesa më e gjatë e ujërave të bardha që ne udhëheqim.",
+          "tag": ""
+        },
+        "kayak": {
+          "title": "Stërvitje me Kajak",
+          "desc": "Udhëzim një-për-një në kajakë të fryrë për ata që duan të vozisin vetë.",
+          "tag": ""
+        },
+        "family": {
+          "title": "Nota Familjare",
+          "desc": "Një rrugë më e butë dhe më e ngadaltë e krijuar për fëmijët 8+ dhe vozitësit fillestarë të çdo moshe.",
+          "tag": ""
+        },
+        "photo": {
+          "title": "Udhëtime Foto & Film",
+          "desc": "Një guidë fotografon nga një gomone mbështetëse dhe të jep një galeri në të njëjtën ditë, pa pagesë shtesë.",
+          "tag": ""
+        },
+        "multiDay": {
+          "title": "Kampe shumëditore",
+          "desc": "Zbritje dy-ditore me kamp në një plazh zhavorri nën muret e kanionit.",
+          "tag": "I ri për 2026"
+        }
+      }
+    },
+    "howItWorks": {
+      "eyebrow": "Në Ditën e Turit",
+      "title": "Çfarë të presësh",
+      "steps": {
+        "meet": {
+          "title": "Takimi & Pajisjet",
+          "desc": "Regjistrohu në Qendrën Rafting Vjosa në Përmet. Merr kostumin e lagësht, helmetën, jelekun e shpëtimit dhe vozën. Arri 10–15 minuta më herët."
+        },
+        "transfer": {
+          "title": "Transferimi & Informimi",
+          "desc": "Të çojmë në pikën e hyrjes në lumë. Guidat shpjegojnë teknikën e vozitjes, sigurinë dhe si të lexosh lumin."
+        },
+        "warmup": {
+          "title": "Ngrohja",
+          "desc": "Fillo në një pjesë të qetë – ndjeje rrjedhën, gjej ritmin dhe shijo muret e kanionit. Ndalesa e parë për not nëse kushtet e lejojnë."
+        },
+        "rapids": {
+          "title": "Rrepëzat & Kërcimet nga Shkëmbinjtë",
+          "desc": "Kaloni rrepëzat e klasit II–III përmes lumit të fundit të egër të Evropës. Kërcime nga shkëmbinjtë në ndalesën e notit."
+        },
+        "return": {
+          "title": "Kthimi në Përmet",
+          "desc": "Furgonët të presin në pikën e daljes dhe të kthejnë në qendër. Fotot e udhëtimit të tua janë gati për shkarkim po atë ditë."
+        }
+      }
+    },
+    "gallery": {
+      "eyebrow": "Lumi Përmes Lentes Sonë",
+      "title": "Mbi ujë",
+      "scrollHint": "Lëviz për të eksploruar",
+      "clickToExpand": "Kliko për të zmadhuar",
+      "img1": {
+        "label": "Vrapimi në Kanion",
+        "alt": "Grupi duke kaluar një rrepëz të klasit III"
+      },
+      "img2": {
+        "label": "Qetësia Mes Pikave",
+        "alt": "Kajakist në ujërat e qeta bruz të Vjosës"
+      },
+      "img3": {
+        "label": "Udhëhequr nga më të Mirët",
+        "alt": "Guida duke udhëhequr gomonen nëpër rrepëza"
+      },
+      "img4": {
+        "label": "Ndalesa e Notit",
+        "alt": "Ujë i kristaltë për ndalesën e notit"
+      },
+      "img5": {
+        "label": "Kanioni Gëlqeror",
+        "alt": "Muret e kanionit që ngrihen mbi kokë"
+      },
+      "img6": {
+        "label": "Nata në Kampin e Egër",
+        "alt": "Perëndimi i diellit në kampin e plazhit të zhavorrit"
+      }
+    },
+    "reviews": {
+      "eyebrow": "Vlerësime të Verifikuara",
+      "title": "Tregime nga lumi",
+      "tripadvisorLabel": "TripAdvisor — Shkëlqyeshëm",
+      "readAll": "Lexo të gjitha vlerësimet në TripAdvisor"
+    },
+    "sustainability": {
+      "eyebrow": "Angazhimi ynë",
+      "title": "Ne mbrojmë atë që lundrojmë",
+      "text": "Vjosa është një nga ekosistemet e fundit të lumenjve të paprekur në Evropë. Ne operojmë ekskluzivisht brenda kufijve të sistemit të lejeve të Parkut Kombëtar, kryejmë udhëtime pa mbeturina dhe mbështesim në mënyrë aktive punën e ruajtjes së EcoAlbania. Asnjë plastikë njëpërdorimshe. Asnjë ndotje zhurmash. Asnjë shkurtim rruge.",
+      "items": {
+        "plastic": "Zero plastikë njëpërdorimshe në çdo udhëtim",
+        "trace": "Protokolle për të lënë lumin pa gjurmë",
+        "wildlife": "Zona shmangieje për peshqit dhe kafshët e egra",
+        "partner": "Partner i programit të ruajtjes EcoAlbania"
+      }
+    },
+    "finalCta": {
+      "eyebrow": "Turnetë mbushen shpejt në Korrik & Gusht",
+      "title": "Gati për të hyrë në ujë?",
+      "subtitle": "Rezervo datën tani – ose kontakto në WhatsApp nëse ke pyetje.",
+      "bookButton": "Rezervo një Tur",
+      "contactButton": "Na kontakto"
+    },
+    "faq": {
+      "experience.q": "Kam nevojë për përvojë?",
+      "experience.a": "Aspak. Turnetë tona janë krijuar për fillestarët e plotë. Një informim i plotë sigurie përfshihet para çdo nisjeje.",
+      "bring.q": "Çfarë duhet të marr?",
+      "bring.a": "Rroba banje, peshqir dhe krem dielli. Ne ofrojmë kostume të lagështa, helmeta, jelekë shpëtimi, voza dhe çanta të thata.",
+      "getThere.q": "Si të shkoj në Përmet?",
+      "getThere.a": "~3 orë me makinë nga Tirana, ose me furgon ditor nga stacioni Qafa e Botës. Mund të këshillojmë për transferime.",
+      "group.q": "A mund të rezervojmë si grup?",
+      "group.a": "Po – grupet me 6+ persona marrin një guidë dedikuar dhe çmime preferenciale. Na kontakto përpara rezervimit online.",
+      "cancellation.q": "Cila është politika e anulimit?",
+      "cancellation.a": "Rimbursim i plotë deri 24 orë para nisjes. Mund të riprogramosh një herë falas brenda 24 orëve.",
+      "children.q": "A është i sigurt për fëmijët?",
+      "children.a": "Po. Turnetë klasike janë të përshtatshme për fëmijët 8+. Guidat përshtatin rrugën bazuar në nivelin e rehatisë së grupit."
+    }
+  },
+  "contact": {
+  "header": {
+    "eyebrow": "Na kontaktoni",
+    "title": "Kontaktoni",
+    "subtitle": "Rezervime grupi, udhëtime të personalizuara, ose thjesht një pyetje për lumin — ne jemi me bazë në Përmet dhe përgjigjemi shpejt gjatë sezonit."
+  },
+  "form": {
+    "quickSubjects": {
+      "label": "Për çfarë ka të bëjë?",
+      "group": "Kërkesë për rezervim grupi",
+      "custom": "Planifikim udhëtimi i personalizuar",
+      "transfer": "Transfer nga Tirana",
+      "other": "Pyetje tjetër"
+    },
+    "labels": {
+      "subjectFree": "Ose shkruani subjektin tuaj",
+      "name": "Emri",
+      "email": "Email",
+      "message": "Mesazhi",
+      "security": "Kontroll sigurie"
+    },
+    "placeholders": {
+      "subject": "Subjekt i personalizuar…",
+      "name": "Emri juaj",
+      "email": "ju@example.com",
+      "message": "Na tregoni se çfarë po planifikoni — madhësia e grupit, datat, pyetje…"
+    },
+    "errors": {
+      "name": "Shkruani emrin tuaj",
+      "email": "Shkruani një email të vlefshëm",
+      "subject": "Shkruani një subjekt",
+      "message": "Mesazhi duhet të jetë së paku 10 karaktere",
+      "turnstile": "Ju lutemi plotësoni verifikimin e sigurisë.",
+      "rateLimit": "Ju lutemi prisni përpara se të dërgoni një mesazh tjetër.",
+      "generic": "Dërgimi dështoi. Ju lutemi provoni përsëri."
+    },
+    "submit": "Dërgo mesazh →",
+    "footerNote": "Ne përgjigjemi zakonisht brenda pak orëve gjatë sezonit (prill–tetor)."
+  },
+  "success": {
+    "title": "Mesazhi u dërgua",
+    "text": "Ne përgjigjemi zakonisht brenda pak orëve gjatë sezonit. Kontrolloni kutinë tuaj hyrëse — dhe dosjen e spam-it — për përgjigjen tonë.",
+    "button": "Dërgo një mesazh tjetër"
+  },
+  "sidebar": {
+    "reachUs": "Na kontaktoni direkt",
+    "emailLabel": "Email",
+    "locationLabel": "Vendndodhja",
+    "locationValue": "Përmet, Qarku Gjirokastër, Shqipëri",
+    "seasonLabel": "Sezoni",
+    "seasonValue": "Prill – Tetor",
+    "faq": {
+      "title": "Pyetje të shpeshta",
+      "faq1": {
+        "q": "Kam nevojë për përvojë?",
+        "a": "Jo. Turnetë tona të lehta dhe të moderuara janë të përshtatshme për fillestarët e plotë."
+      },
+      "faq2": {
+        "q": "Çfarë duhet të marr?",
+        "a": "Rroba banje, krem dielli dhe një ndërrim rrobash. Ne ofrojmë gjithçka tjetër."
+      },
+      "faq3": {
+        "q": "Zbritje për grupe?",
+        "a": "Po — për 8 ose më shumë persona, na kontaktoni për çmime të personalizuara."
+      },
+      "faq4": {
+        "q": "Cila është koha më e mirë për të vizituar?",
+        "a": "Qershor–Shtator për ujë të ngrohtë dhe ditë të kthjellta. Prilli dhe Tetori janë më të qetë dhe po aq të bukur."
+      }
+    },
+    "note": "🌿 Ne jemi një ekip i vogël lokal me bazë në Përmet. Çdo mesazh shkon direkt te guidat — jo në një qendër telefonike."
   }
+},
+"whyVjosa": {
+  "hero": {
+    "eyebrow": "Për udhëtarët e ndërgjegjshëm për mjedisin",
+    "title": "Pse Vjosa<br />meriton mbrojtje",
+    "subtitle": "Çdo rezervim financon një lumë që pothuajse nuk ekzistonte. Kjo është ekologjia, lufta dhe statusi i Parkut Kombëtar pas ujit që do të lundroni."
+  },
+  "ecology": {
+    "eyebrow": "Ekologjia",
+    "title": "Një lumë i gjallë dhe në lëvizje",
+    "facts": {
+      "fish": {
+        "title": "Mbi 40 lloje peshqish",
+        "desc": "Përfshirë nase të Vjosës, një specie endemike që nuk gjendet askund tjetër në botë."
+      },
+      "species": {
+        "title": "Mbi 1.100 lloje të regjistruara",
+        "desc": "Në të gjithë pellgun e Vjosës: zogj, gjitarë, amfibë dhe insekte ujore, disa prej të cilëve gjenden vetëm këtu."
+      },
+      "morphology": {
+        "title": "Morfologji lumi me kanale të endura",
+        "desc": "Një nga lumenjtë e fundit evropianë që ende mund të lëvizë lirisht kanalet, bregun e zhavorrit dhe ishujt natyrshëm."
+      },
+      "dams": {
+        "title": "270 km, zero diga",
+        "desc": "Një korridor i vazhdueshëm dhe i pandërprerë nga Malet Pindus deri në Detin Adriatik."
+      }
+    }
+  },
+  "timeline": {
+    "eyebrow": "Lufta për ta mbrojtur",
+    "title": "Nga planet për diga në park kombëtar",
+    "items": {
+      "fight": {
+        "title": "Fillon lufta",
+        "desc": "Planet për një seri digash hidroenergjetike në Vjosë nxisin një fushatë lokale dhe ndërkombëtare për të mbrojtur lumin."
+      },
+      "patagonia": {
+        "title": "Patagonia ndërhyn",
+        "desc": "Fushata 'Blue Heart of Europe', e mbështetur nga Patagonia dhe EcoAlbania, tërheq vëmendjen globale te Vjosa."
+      },
+      "shelved": {
+        "title": "Planet për diga anulohen",
+        "desc": "Qeveria shqiptare angazhohet për të mbrojtur lumin në vend që të ndërtojë diga."
+      },
+      "park": {
+        "title": "Shpallet Park Kombëtar",
+        "desc": "Vjosa bëhet Parku i parë Kombëtar i Lumit të Egër në Evropë, duke mbrojtur 12,727 hektarë përgjatë rrjedhës së tij."
+      },
+      "today": {
+        "title": "Turizmi me ndikim të ulët",
+        "desc": "Operatorë të licencuar si ne organizojnë udhëtime sipas rregullave të parkut, të dizajnuara për të financuar ruajtjen pa degraduar lumin."
+      }
+    }
+  },
+  "commitment": {
+    "eyebrow": "Angazhimi ynë",
+    "title": "Turizmi që financon, jo kërcënon",
+    "paragraph1": "Ne operojmë në kuadër të sistemit të lejeve të Parkut Kombëtar të Lumit të Egër Vjosa, i cili kufizon numrin e operatorëve dhe udhëtimeve të lejuara. Një pjesë e çdo rezervimi mbështet punën e vazhdueshme të monitorimit dhe avokimit të EcoAlbania.",
+    "paragraph2": "Asnjë varkë me motor. Asnjë strukturë e përhershme në breg. Asnjë grup nuk niset pa një informim për të mos lënë gjurmë.",
+    "cta": "Shiko turnetë tona"
+  }
+}
 }

@@ -15,7 +15,8 @@
     "headline2": "Vjosa",
     "subtitle": "Class II–III rapids, canyon walls, and crystalline water in Albania's protected wild river park. No experience needed.",
     "ctaExplore": "Explore Tours",
-    "ctaAsk": "Ask a Question"
+    "ctaAsk": "Ask a Question",
+    "parkTag": "Vjosa Wild River National Park · Albania"
   },
   "tours": {
     "title": "Our Tours",
@@ -81,7 +82,37 @@
     "specialty": "Specialty",
     "funFact": "Fun fact",
     "fullTeam": "The full team",
-    "allGuides": "See all guides"
+    "allGuides": "See all guides",
+    "erald": {
+      "role": "Head River Guide",
+      "bio": "Grew up in Përmet, twenty minutes from the put-in. Erald started as a safety kayaker at 19 and has run this canyon more times than he can count. He picks the day's route by reading the morning water, not a schedule.",
+      "specialty": "Reading water levels and live route decisions",
+      "fact": "Can name all 14 rapids on the Përmet stretch without looking at the river."
+    },
+    "luka": {
+      "role": "Rafting Guide",
+      "bio": "Swiftwater rescue certified and the unofficial camp DJ. Luka came to rafting from competitive swimming — he never really left the water. First-timers always get Luka. He has a gift for turning nerves into laughter before the first drop.",
+      "specialty": "First-timer groups and nervous paddlers",
+      "fact": "Plays guitar at every overnight camp. Bring requests."
+    },
+    "megi": {
+      "role": "Safety & Rescue Lead",
+      "bio": "Former Albanian national kayak team. Megi now designs every safety briefing guests receive before launch. She has paddled the full 272km of the Vjosa solo — in six days — to map the water personally.",
+      "specialty": "Swiftwater rescue protocol and risk assessment",
+      "fact": "Paddled the entire Vjosa solo, source to sea, in 6 days."
+    },
+    "klausjo": {
+      "role": "Photography Guide",
+      "bio": "Shoots from a support kayak while you run the rapids. Studied photography in Tirana before moving to Përmet full-time. His same-day gallery means you leave with the entire trip in your camera roll.",
+      "specialty": "Action photography and same-day editing from the water",
+      "fact": "Personal archive of over 40,000 Vjosa river photos."
+    },
+    "sara": {
+      "role": "Kayak Instructor",
+      "bio": "Teaches first-timers to roll a kayak in a single afternoon session. Sara also coaches the Përmet youth paddling club on weekends — a project she started herself in 2020.",
+      "specialty": "Inflatable kayak coaching for all levels",
+      "fact": "Taught her grandmother to kayak at age 68."
+    }
   },
   "common": {
     "loading": "Loading…",
@@ -90,6 +121,305 @@
     "learnMore": "Learn more",
     "seeAllTours": "See all tours",
     "viewAll": "View all",
-    "readMore": "Read more"
+    "readMore": "Read more",
+    "scroll": "Scroll"
+  },
+  "home": {
+    "stats": {
+      "reviews": "Five-star reviews",
+      "years": "Years on the Vjosa",
+      "riverLength": "Of protected wild river",
+      "season": "Season open"
+    },
+    "about": {
+      "eyebrow": "The River",
+      "title": "The last free-flowing river in Europe",
+      "paragraph1": "The Vjosa runs 272km from the Pindus Mountains in Greece to the Adriatic — without a single dam, weir, or diversion along the way. It was declared Europe's first Wild River National Park in 2023, protecting the braided channels, gravel bars, and limestone canyons that most European rivers lost a century ago.",
+      "paragraph2": "We've been guiding the Përmet canyon section since 2014 — before the park existed. Every route is chosen for the same reason the river itself was protected: it's simply too good to alter.",
+      "cta": "View all tours"
+    },
+    "riverFacts": {
+      "length": "Total length, source to sea — entirely free-flowing",
+      "tributaries": "Tributaries feeding the main channel along its course",
+      "year": "Year the Vjosa became a National Park",
+      "countries": "Countries the watershed touches: Greece, Albania, the Ionian Sea"
+    },
+    "riverProfile": {
+      "sourceToSea": "Source → Sea",
+      "stop0.name": "Pindus Mountains, Greece",
+      "stop0.desc": "The Aoös is born from snowmelt high in the Pindus range.",
+      "stop80.name": "Crosses into Albania",
+      "stop80.desc": "Becomes the Vjosa, widening through the Përmet valley.",
+      "stop145.name": "Përmet — our base",
+      "stop145.desc": "Canyon walls, gravel bars, and the rapids we run.",
+      "stop272.name": "Adriatic Sea",
+      "stop272.desc": "Empties into the sea near Narta Lagoon, untouched by a single dam."
+    },
+    "offerings": {
+      "eyebrow": "What We Offer",
+      "title": "Six ways down the river",
+      "subtitle": "From a first paddle stroke to a two-day wild camp — every trip runs on the same stretch of protected canyon, just at a different pace.",
+      "items": {
+        "halfDay": {
+          "title": "Half-Day Descent",
+          "desc": "A 2.5-hour run through the Class II–III canyon stretch. The classic first-timer route.",
+          "tag": "Most popular"
+        },
+        "fullDay": {
+          "title": "Full-Day Expedition",
+          "desc": "The complete Përmet canyon, two swim stops, riverside lunch, and the longest stretch of whitewater we run.",
+          "tag": ""
+        },
+        "kayak": {
+          "title": "Kayak Coaching",
+          "desc": "One-on-one instruction in inflatable kayaks for people who want to paddle their own line.",
+          "tag": ""
+        },
+        "family": {
+          "title": "Family Float",
+          "desc": "A gentler, slower-moving route built for kids 8+ and first-time paddlers of any age.",
+          "tag": ""
+        },
+        "photo": {
+          "title": "Photo & Film Trips",
+          "desc": "A guide shoots from a support raft and hands you a same-day gallery, no extra charge.",
+          "tag": ""
+        },
+        "multiDay": {
+          "title": "Multi-Day Camps",
+          "desc": "Two-day descents with a wild camp on a gravel beach under the canyon walls.",
+          "tag": "New for 2026"
+        }
+      }
+    },
+    "howItWorks": {
+      "eyebrow": "On the Day",
+      "title": "What to expect",
+      "steps": {
+        "meet": {
+          "title": "Meet & Gear Up",
+          "desc": "Check in at the Vjosa Rafting Center in Përmet. Get fitted with wetsuit, helmet, life jacket, and paddle. Arrive 10–15 min early."
+        },
+        "transfer": {
+          "title": "Transfer & Briefing",
+          "desc": "We drive you to the river entry point. Guides walk you through paddle technique, water safety, and how to read the river."
+        },
+        "warmup": {
+          "title": "Warm-Up Float",
+          "desc": "Start on a calm section — feel the current, find your rhythm, and take in the canyon walls. First swim stop if conditions allow."
+        },
+        "rapids": {
+          "title": "Rapids & Rock Jumps",
+          "desc": "Navigate Class II–III rapids through Europe's last wild river. Optional rock jumps at the swimming break."
+        },
+        "return": {
+          "title": "Back to Përmet",
+          "desc": "Vans meet you at the take-out and bring you back to the center. Free photos from your trip are ready to download the same day."
+        }
+      }
+    },
+    "gallery": {
+      "eyebrow": "The River Through Our Lens",
+      "title": "On the water",
+      "scrollHint": "Scroll to explore",
+      "clickToExpand": "Click to expand",
+      "img1": {
+        "label": "The Canyon Run",
+        "alt": "Group charging through a Class III rapid"
+      },
+      "img2": {
+        "label": "Calm Between Drops",
+        "alt": "Kayaker in calm turquoise Vjosa water"
+      },
+      "img3": {
+        "label": "Led by the Best",
+        "alt": "Guide leading raft through rapids"
+      },
+      "img4": {
+        "label": "The Swim Stop",
+        "alt": "Crystal clear water swim stop"
+      },
+      "img5": {
+        "label": "Limestone Canyon",
+        "alt": "Canyon walls towering overhead"
+      },
+      "img6": {
+        "label": "Wild Camp Night",
+        "alt": "Sunset on the gravel beach camp"
+      }
+    },
+    "reviews": {
+      "eyebrow": "Verified Reviews",
+      "title": "Stories from the river",
+      "tripadvisorLabel": "TripAdvisor — Excellent",
+      "readAll": "Read all reviews on TripAdvisor"
+    },
+    "sustainability": {
+      "eyebrow": "Our Commitment",
+      "title": "We protect what we paddle",
+      "text": "The Vjosa is one of Europe's last intact river ecosystems. We operate exclusively within the bounds of the National Park permit system, carry out zero-waste trips, and actively support EcoAlbania's conservation work. No plastic single-use items. No noise pollution. No shortcuts.",
+      "items": {
+        "plastic": "Zero single-use plastic on every trip",
+        "trace": "Leave-no-trace river protocols",
+        "wildlife": "Fish and wildlife disturbance avoidance zones",
+        "partner": "Partner of EcoAlbania conservation program"
+      }
+    },
+    "finalCta": {
+      "eyebrow": "Trips fill fast in July & August",
+      "title": "Ready to get on the water?",
+      "subtitle": "Lock in your date now — or reach out on WhatsApp if you have questions first.",
+      "bookButton": "Book a Tour",
+      "contactButton": "Contact Us"
+    },
+    "faq": {
+      "experience.q": "Do I need experience?",
+      "experience.a": "None at all. Our tours are designed for complete beginners. A full safety briefing is included before every departure.",
+      "bring.q": "What should I bring?",
+      "bring.a": "Swimsuit, towel, and sunscreen. We provide wetsuits, helmets, life jackets, paddles, and dry bags.",
+      "getThere.q": "How do I get to Përmet?",
+      "getThere.a": "~3 hours by car from Tirana, or by daily furgon from Qafa e Botës station. We can advise on transfers.",
+      "group.q": "Can we book as a group?",
+      "group.a": "Yes — groups of 6+ get a dedicated guide and preferential pricing. Contact us before booking online.",
+      "cancellation.q": "What is the cancellation policy?",
+      "cancellation.a": "Full refund up to 24 hours before departure. You can reschedule once for free within 24 hours.",
+      "children.q": "Is it safe for children?",
+      "children.a": "Yes. Classic tours are suitable for children 8+. Guides adjust the route based on your group's comfort level."
+    }
+  },
+  "contact": {
+  "header": {
+    "eyebrow": "Get in touch",
+    "title": "Contact us",
+    "subtitle": "Group bookings, custom trips, or just a question about the river — we're based in Përmet and respond quickly during season."
+  },
+  "form": {
+    "quickSubjects": {
+      "label": "What's this about?",
+      "group": "Group booking inquiry",
+      "custom": "Custom trip planning",
+      "transfer": "Transfer from Tirana",
+      "other": "Other question"
+    },
+    "labels": {
+      "subjectFree": "Or type your subject",
+      "name": "Name",
+      "email": "Email",
+      "message": "Message",
+      "security": "Security check"
+    },
+    "placeholders": {
+      "subject": "Custom subject…",
+      "name": "Your name",
+      "email": "you@example.com",
+      "message": "Tell us what you're planning — group size, dates, any questions…"
+    },
+    "errors": {
+      "name": "Enter your name",
+      "email": "Enter a valid email",
+      "subject": "Enter a subject",
+      "message": "Message must be at least 10 characters",
+      "turnstile": "Please complete the security verification.",
+      "rateLimit": "Please wait before sending another message.",
+      "generic": "Failed to send. Please try again."
+    },
+    "submit": "Send message →",
+    "footerNote": "We usually reply within a few hours during season (April–October)."
+  },
+  "success": {
+    "title": "Message sent",
+    "text": "We usually reply within a few hours during season. Check your inbox — and spam folder — for our response.",
+    "button": "Send another message"
+  },
+  "sidebar": {
+    "reachUs": "Reach us directly",
+    "emailLabel": "Email",
+    "locationLabel": "Location",
+    "locationValue": "Përmet, Gjirokastër County, Albania",
+    "seasonLabel": "Season",
+    "seasonValue": "April – October",
+    "faq": {
+      "title": "Common questions",
+      "faq1": {
+        "q": "Do I need experience?",
+        "a": "No. Our easy and moderate tours are suitable for complete beginners."
+      },
+      "faq2": {
+        "q": "What should I bring?",
+        "a": "A swimsuit, sunscreen, and a change of clothes. We provide everything else."
+      },
+      "faq3": {
+        "q": "Group discounts?",
+        "a": "Yes — for 8 or more people, contact us for custom pricing."
+      },
+      "faq4": {
+        "q": "What's the best time to visit?",
+        "a": "June–September for warm water and clear days. April and October are quieter and equally beautiful."
+      }
+    },
+    "note": "🌿 We're a small local team based in Përmet. Every message goes directly to the guides — not a call center."
   }
+},
+"whyVjosa": {
+  "hero": {
+    "eyebrow": "For Eco-Conscious Travellers",
+    "title": "Why the Vjosa<br />is worth protecting",
+    "subtitle": "Every booking funds a river that almost wasn't here. This is the ecology, the fight, and the National Park status behind the water you'll paddle."
+  },
+  "ecology": {
+    "eyebrow": "The Ecology",
+    "title": "A living, shifting river",
+    "facts": {
+      "fish": {
+        "title": "40+ fish species",
+        "desc": "Including the endemic Vjosa nase, found nowhere else on Earth."
+      },
+      "species": {
+        "title": "1,100+ recorded species",
+        "desc": "Across the Vjosa watershed: birds, mammals, amphibians, and aquatic insects, several found only here."
+      },
+      "morphology": {
+        "title": "Braided river morphology",
+        "desc": "One of the last European rivers still free to shift its own channels, gravel bars, and islands naturally."
+      },
+      "dams": {
+        "title": "270km, zero dams",
+        "desc": "A continuous, unbroken corridor from the Pindus Mountains to the Adriatic Sea."
+      }
+    }
+  },
+  "timeline": {
+    "eyebrow": "The Fight to Protect It",
+    "title": "From dam plans to national park",
+    "items": {
+      "fight": {
+        "title": "The fight begins",
+        "desc": "Plans for a string of hydropower dams on the Vjosa spark a local and international campaign to protect the river."
+      },
+      "patagonia": {
+        "title": "Patagonia steps in",
+        "desc": "The 'Blue Heart of Europe' campaign, backed by Patagonia and EcoAlbania, brings global attention to the Vjosa."
+      },
+      "shelved": {
+        "title": "Dam plans shelved",
+        "desc": "The Albanian government commits to protecting the river instead of damming it."
+      },
+      "park": {
+        "title": "National Park declared",
+        "desc": "The Vjosa becomes Europe's first Wild River National Park, protecting 12,727 hectares along its length."
+      },
+      "today": {
+        "title": "Low-impact tourism",
+        "desc": "Licensed operators like us run trips under park rules designed to fund conservation without degrading the river."
+      }
+    }
+  },
+  "commitment": {
+    "eyebrow": "Our Commitment",
+    "title": "Tourism that funds, not threatens",
+    "paragraph1": "We operate under the Vjosa Wild River National Park permit system, which caps the number of operators and trips allowed on the water. A share of every booking supports EcoAlbania's ongoing river monitoring and advocacy work.",
+    "paragraph2": "No motorised boats. No permanent structures on the riverbank. No group left without a leave-no-trace briefing before launch.",
+    "cta": "See our tours"
+  }
+}
 }

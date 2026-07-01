@@ -1,20 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useEffect, useRef, useState } from 'react'
-
-const ECO_FACTS = [
-  { icon: '🐟', title: '40+ fish species', desc: 'Including the endemic Vjosa nase, found nowhere else on Earth.' },
-  { icon: '🦅', title: '1,100+ recorded species', desc: 'Across the Vjosa watershed: birds, mammals, amphibians, and aquatic insects, several found only here.' },
-  { icon: '🌊', title: 'Braided river morphology', desc: 'One of the last European rivers still free to shift its own channels, gravel bars, and islands naturally.' },
-  { icon: '🏔️', title: '270km, zero dams', desc: 'A continuous, unbroken corridor from the Pindus Mountains to the Adriatic Sea.' },
-]
-
-const TIMELINE = [
-  { year: '2012', title: 'The fight begins', desc: 'Plans for a string of hydropower dams on the Vjosa spark a local and international campaign to protect the river.' },
-  { year: '2017', title: 'Patagonia steps in', desc: 'The "Blue Heart of Europe" campaign, backed by Patagonia and EcoAlbania, brings global attention to the Vjosa.' },
-  { year: '2021', title: 'Dam plans shelved', desc: "The Albanian government commits to protecting the river instead of damming it." },
-  { year: '2023', title: 'National Park declared', desc: "The Vjosa becomes Europe's first Wild River National Park, protecting 12,727 hectares along its length." },
-  { year: 'Today', title: 'Low-impact tourism', desc: 'Licensed operators like us run trips under park rules designed to fund conservation without degrading the river.' },
-]
+import { useTranslation } from 'react-i18next'
 
 function useReveal() {
   const ref = useRef<HTMLDivElement>(null)
@@ -39,10 +25,29 @@ function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
 }
 
 export default function WhyVjosa() {
+  const { t } = useTranslation()
+
+  // Use translation keys for eco facts
+  const ecoFacts = [
+    { icon: '🐟', key: 'fish' },
+    { icon: '🦅', key: 'species' },
+    { icon: '🌊', key: 'morphology' },
+    { icon: '🏔️', key: 'dams' },
+  ]
+
+  // Timeline data – keys for title and desc
+  const timelineItems = [
+    { year: '2012', key: 'fight' },
+    { year: '2017', key: 'patagonia' },
+    { year: '2021', key: 'shelved' },
+    { year: '2023', key: 'park' },
+    { year: 'Today', key: 'today' },
+  ]
+
   return (
     <div className="min-h-screen overflow-x-hidden">
 
-      {/* Hero */}
+      {/* ─── Hero ─────────────────────────────────────────── */}
       <section className="relative h-[70vh] min-h-[480px] flex items-end overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
@@ -50,30 +55,40 @@ export default function WhyVjosa() {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#0a1410]/30 via-[#0a1410]/20 to-[#0a1410]" />
         <div className="relative z-10 max-w-4xl mx-auto px-6 pb-20 w-full">
-          <p className="text-xs font-semibold tracking-[0.2em] uppercase text-[#4CAF50] mb-4">For Eco-Conscious Travellers</p>
+          <p className="text-xs font-semibold tracking-[0.2em] uppercase text-[#4CAF50] mb-4">
+            {t('whyVjosa.hero.eyebrow')}
+          </p>
           <h1 className="font-display text-5xl sm:text-6xl font-extrabold text-white leading-[0.95] mb-4">
-            Why the Vjosa<br />is worth protecting
+            {t('whyVjosa.hero.title')}
           </h1>
           <p className="text-white/55 text-base max-w-xl leading-relaxed">
-            Every booking funds a river that almost wasn't here. This is the ecology, the fight, and the National Park status behind the water you'll paddle.
+            {t('whyVjosa.hero.subtitle')}
           </p>
         </div>
       </section>
 
-      {/* Ecology facts */}
+      {/* ─── Ecology facts ─────────────────────────────────── */}
       <section className="py-24 px-6 border-t border-white/5">
         <div className="max-w-6xl mx-auto">
           <Reveal>
-            <span className="text-xs font-semibold tracking-[0.15em] uppercase text-[#4CAF50] block mb-3">The Ecology</span>
-            <h2 className="font-display text-3xl sm:text-4xl font-bold text-white mb-12">A living, shifting river</h2>
+            <span className="text-xs font-semibold tracking-[0.15em] uppercase text-[#4CAF50] block mb-3">
+              {t('whyVjosa.ecology.eyebrow')}
+            </span>
+            <h2 className="font-display text-3xl sm:text-4xl font-bold text-white mb-12">
+              {t('whyVjosa.ecology.title')}
+            </h2>
           </Reveal>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {ECO_FACTS.map((f, i) => (
-              <Reveal key={f.title} delay={i * 80}>
+            {ecoFacts.map((f, i) => (
+              <Reveal key={f.key} delay={i * 80}>
                 <div className="h-full rounded-2xl border border-white/7 bg-white/[0.02] p-6">
                   <div className="text-2xl mb-4">{f.icon}</div>
-                  <h3 className="font-display font-semibold text-white text-base mb-2">{f.title}</h3>
-                  <p className="text-white/40 text-sm leading-relaxed">{f.desc}</p>
+                  <h3 className="font-display font-semibold text-white text-base mb-2">
+                    {t(`whyVjosa.ecology.facts.${f.key}.title`)}
+                  </h3>
+                  <p className="text-white/40 text-sm leading-relaxed">
+                    {t(`whyVjosa.ecology.facts.${f.key}.desc`)}
+                  </p>
                 </div>
               </Reveal>
             ))}
@@ -81,26 +96,34 @@ export default function WhyVjosa() {
         </div>
       </section>
 
-      {/* Timeline */}
+      {/* ─── Timeline ───────────────────────────────────────── */}
       <section className="py-24 px-6 border-t border-white/5 bg-black/15">
         <div className="max-w-3xl mx-auto">
           <Reveal>
-            <span className="text-xs font-semibold tracking-[0.15em] uppercase text-[#4CAF50] block mb-3">The Fight to Protect It</span>
-            <h2 className="font-display text-3xl sm:text-4xl font-bold text-white mb-12">From dam plans to national park</h2>
+            <span className="text-xs font-semibold tracking-[0.15em] uppercase text-[#4CAF50] block mb-3">
+              {t('whyVjosa.timeline.eyebrow')}
+            </span>
+            <h2 className="font-display text-3xl sm:text-4xl font-bold text-white mb-12">
+              {t('whyVjosa.timeline.title')}
+            </h2>
           </Reveal>
           <div className="flex flex-col">
-            {TIMELINE.map((t, i) => (
-              <Reveal key={t.year} delay={i * 70}>
+            {timelineItems.map((item, i) => (
+              <Reveal key={item.year} delay={i * 70}>
                 <div className="flex gap-6 pb-10 last:pb-0 relative">
-                  {i < TIMELINE.length - 1 && (
+                  {i < timelineItems.length - 1 && (
                     <div className="absolute left-[27px] top-10 bottom-0 w-px bg-white/10" />
                   )}
                   <div className="flex-shrink-0 w-14 h-14 rounded-full border border-[#4CAF50]/30 bg-[#4CAF50]/10 flex items-center justify-center font-mono text-xs text-[#4CAF50] font-bold">
-                    {t.year}
+                    {item.year}
                   </div>
                   <div className="pt-2">
-                    <h3 className="font-display font-semibold text-white text-lg mb-1.5">{t.title}</h3>
-                    <p className="text-white/45 text-sm leading-relaxed max-w-md">{t.desc}</p>
+                    <h3 className="font-display font-semibold text-white text-lg mb-1.5">
+                      {t(`whyVjosa.timeline.items.${item.key}.title`)}
+                    </h3>
+                    <p className="text-white/45 text-sm leading-relaxed max-w-md">
+                      {t(`whyVjosa.timeline.items.${item.key}.desc`)}
+                    </p>
                   </div>
                 </div>
               </Reveal>
@@ -109,20 +132,24 @@ export default function WhyVjosa() {
         </div>
       </section>
 
-      {/* How tourism helps */}
+      {/* ─── How tourism helps ─────────────────────────────── */}
       <section className="py-24 px-6 border-t border-white/5">
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <Reveal>
-            <span className="text-xs font-semibold tracking-[0.15em] uppercase text-[#4CAF50] block mb-3">Our Commitment</span>
-            <h2 className="font-display text-3xl font-bold text-white mb-5">Tourism that funds, not threatens</h2>
+            <span className="text-xs font-semibold tracking-[0.15em] uppercase text-[#4CAF50] block mb-3">
+              {t('whyVjosa.commitment.eyebrow')}
+            </span>
+            <h2 className="font-display text-3xl font-bold text-white mb-5">
+              {t('whyVjosa.commitment.title')}
+            </h2>
             <p className="text-white/50 leading-relaxed text-sm mb-4">
-              We operate under the Vjosa Wild River National Park permit system, which caps the number of operators and trips allowed on the water. A share of every booking supports EcoAlbania's ongoing river monitoring and advocacy work.
+              {t('whyVjosa.commitment.paragraph1')}
             </p>
             <p className="text-white/50 leading-relaxed text-sm mb-6">
-              No motorised boats. No permanent structures on the riverbank. No group left without a leave-no-trace briefing before launch.
+              {t('whyVjosa.commitment.paragraph2')}
             </p>
             <Link to="/tours" className="btn-primary inline-flex items-center gap-2">
-              See our tours <span>→</span>
+              {t('whyVjosa.commitment.cta')} <span>→</span>
             </Link>
           </Reveal>
           <Reveal delay={120}>
