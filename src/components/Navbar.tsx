@@ -19,9 +19,14 @@ export default function Navbar() {
     setIsOpen(false)
   }, [location.pathname])
 
+  // ─── All links with translation keys ──────────────────────
   const navLinks = [
     { to: '/', label: t('nav.home') },
     { to: '/tours', label: t('nav.tours') },
+    { to: '/trip-builder', label: t('nav.tripBuilder') },
+    { to: '/guides', label: t('nav.guides') },
+    { to: '/why-vjosa', label: t('nav.whyVjosa') },
+    { to: '/faq', label: t('nav.faq') },
     { to: '/contact', label: t('nav.contact') },
   ]
 
@@ -84,7 +89,7 @@ export default function Navbar() {
           >
             <span className={`block w-5 h-0.5 bg-current transition-all duration-200 ${isOpen ? 'rotate-45 translate-y-1.5' : ''}`} />
             <span className={`block w-5 h-0.5 bg-current mt-1.5 transition-all duration-200 ${isOpen ? 'opacity-0' : ''}`} />
-            <span className={`block w-5 h-0.5 bg-current mt-1.5 transition-all duration-200 ${isOpen ? '-rotate-45 -translate-y-1.5' : ''}`} />
+            <span className={`block w-5 h-0.5 bg-current mt-1.5 transition-all duration-200 ${isOpen ? '-rotate-45 translate-y-1.5' : ''}`} />
           </button>
         </div>
 
