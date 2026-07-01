@@ -212,13 +212,13 @@ function HeroGallery({ tour, lightbox, setLightbox }: { tour: Tour; lightbox: nu
 export default function TourDetail() {
   const { slug } = useParams<{ slug: string }>()
   const navigate = useNavigate()
-  const { t } = useTranslation()
+  const { t: _t } = useTranslation()
   const [tour, setTour] = useState<Tour | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [lightbox, setLightbox] = useState<number | null>(null)
   const [activeTab, setActiveTab] = useState<'itinerary' | 'includes' | 'map'>('itinerary')
-  const stickyRef = useRef<HTMLDivElement>(null)
+  //const stickyRef = useRef<HTMLDivElement>(null)
   const [showStickyBar, setShowStickyBar] = useState(false)
 
   useEffect(() => {
