@@ -925,16 +925,15 @@ export default function Admin() {
                       {t.is_active === false ? 'Activate' : 'Deactivate'}
                     </button>
                     <button
-                      onClick={() => {
-                        const bookingsForTour = bookings.filter(b => b.tour?.id === t.id)
-                        setTab('bookings')
-                        setBSearch(t.name)
-                      }}
-                      className="px-4 py-2 rounded-xl text-xs font-semibold transition-colors"
-                      style={{ background: 'rgba(255,255,255,0.04)', color: 'rgba(255,255,255,0.5)', border: '1px solid rgba(255,255,255,0.08)' }}
-                    >
-                      View bookings
-                    </button>
+  onClick={() => {
+    setTab('bookings')
+    setBSearch(t.name)
+  }}
+  className="px-4 py-2 rounded-xl text-xs font-semibold transition-colors"
+  style={{ background: 'rgba(255,255,255,0.04)', color: 'rgba(255,255,255,0.5)', border: '1px solid rgba(255,255,255,0.08)' }}
+>
+  View bookings
+</button>
                   </div>
                 </div>
               ))}
