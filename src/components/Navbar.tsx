@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
+import LanguageSwitcher from './LanguageSwitcher'
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const location = useLocation()
+  const { t } = useTranslation()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
@@ -16,15 +19,10 @@ export default function Navbar() {
     setIsOpen(false)
   }, [location.pathname])
 
-  // ─── All top-level links ──────────────────────────────────
   const navLinks = [
-    { to: '/', label: 'Home' },
-    { to: '/tours', label: 'Tours' },
-    { to: '/trip-builder', label: 'Build Your Trip' },
-    { to: '/guides', label: 'Guides' },
-    { to: '/why-vjosa', label: 'Why Vjosa' },
-    { to: '/faq', label: 'FAQ' },
-    { to: '/contact', label: 'Contact' },
+    { to: '/', label: t('nav.home') },
+    { to: '/tours', label: t('nav.tours') },
+    { to: '/contact', label: t('nav.contact') },
   ]
 
   return (
@@ -69,10 +67,11 @@ export default function Navbar() {
             ))}
           </nav>
 
-          {/* CTA */}
+          {/* Desktop CTA + language switcher */}
           <div className="hidden md:flex items-center gap-3">
+            <LanguageSwitcher />
             <Link to="/tours" className="btn-primary text-sm py-2 px-5">
-              Book Now
+              {t('nav.bookNow')}
             </Link>
           </div>
 
@@ -85,7 +84,7 @@ export default function Navbar() {
           >
             <span className={`block w-5 h-0.5 bg-current transition-all duration-200 ${isOpen ? 'rotate-45 translate-y-1.5' : ''}`} />
             <span className={`block w-5 h-0.5 bg-current mt-1.5 transition-all duration-200 ${isOpen ? 'opacity-0' : ''}`} />
-            <span className={`block w-5 h-0.5 bg-current mt-1.5 transition-all duration-200 ${isOpen ? '-rotate-45 translate-y-1.5' : ''}`} />
+            <span className={`block w-5 h-0.5 bg-current mt-1.5 transition-all duration-200 ${isOpen ? '-rotate-45 -translate-y-1.5' : ''}`} />
           </button>
         </div>
 
@@ -110,8 +109,11 @@ export default function Navbar() {
                 </NavLink>
               ))}
             </nav>
+            <div className="flex items-center gap-3 mb-3">
+              <LanguageSwitcher />
+            </div>
             <Link to="/tours" className="btn-primary w-full text-sm">
-              Book Now
+              {t('nav.bookNow')}
             </Link>
           </div>
         )}

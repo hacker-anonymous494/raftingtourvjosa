@@ -1,0 +1,95 @@
+{
+  "nav": {
+    "home": "Home",
+    "tours": "Tours",
+    "guides": "Guides",
+    "whyVjosa": "Why the Vjosa",
+    "tripBuilder": "Build Your Trip",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "bookNow": "Book Now"
+  },
+  "hero": {
+    "eyebrow": "Europe's Last Wild River",
+    "headline1": "Raft the",
+    "headline2": "Vjosa",
+    "subtitle": "Class II–III rapids, canyon walls, and crystalline water in Albania's protected wild river park. No experience needed.",
+    "ctaExplore": "Explore Tours",
+    "ctaAsk": "Ask a Question"
+  },
+  "tours": {
+    "title": "Our Tours",
+    "eyebrow": "Choose Your Adventure",
+    "viewAll": "View all",
+    "bookTour": "Book This Tour",
+    "from": "From",
+    "perPerson": "/ person",
+    "duration": "Duration",
+    "groupSize": "Group size",
+    "difficulty": "Difficulty",
+    "season": "Season",
+    "seasonValue": "April – October",
+    "backToTours": "All tours",
+    "hours": "hours",
+    "people": "people",
+    "freeCancel": "Free cancellation up to 24h before · Instant confirmation",
+    "haveQuestion": "Have a question?"
+  },
+  "booking": {
+    "title": "Book your tour",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "email": "Email",
+    "phone": "Phone",
+    "date": "Tour date",
+    "participants": "Participants",
+    "notes": "Special requests (optional)",
+    "continue": "Continue",
+    "back": "Back",
+    "confirm": "Confirm & Pay",
+    "total": "Total",
+    "steps": {
+      "details": "Your details",
+      "review": "Review",
+      "payment": "Payment"
+    }
+  },
+  "footer": {
+    "tagline": "Europe's last wild river. An untamed stretch of Vjosa waiting for you in Përmet, Albania.",
+    "explore": "Explore",
+    "reachUs": "Reach Us",
+    "season": "Season: April – October",
+    "rights": "All rights reserved."
+  },
+  "faq": {
+    "title": "Common questions",
+    "eyebrow": "Before You Book",
+    "stillQuestion": "Still have a question?",
+    "whatsappReply": "We reply on WhatsApp within the hour, April through October.",
+    "askWhatsapp": "Ask on WhatsApp"
+  },
+  "whyVjosa": {
+    "eyebrow": "For Eco-Conscious Travellers",
+    "title": "Why the Vjosa is worth protecting",
+    "subtitle": "Every booking funds a river that almost wasn't here."
+  },
+  "guides": {
+    "eyebrow": "The Team",
+    "title": "Your guides",
+    "subtitle": "Every trip is led by a certified guide who knows the Përmet canyon personally.",
+    "yearsOn": "Years on the Vjosa",
+    "specialty": "Specialty",
+    "funFact": "Fun fact",
+    "fullTeam": "The full team",
+    "allGuides": "See all guides"
+  },
+  "common": {
+    "loading": "Loading…",
+    "error": "Something went wrong.",
+    "backHome": "Return home",
+    "learnMore": "Learn more",
+    "seeAllTours": "See all tours",
+    "viewAll": "View all",
+    "readMore": "Read more"
+  }
+}

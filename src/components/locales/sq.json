@@ -1,0 +1,95 @@
+{
+  "nav": {
+    "home": "Kryefaqja",
+    "tours": "Turet",
+    "guides": "Guidat",
+    "whyVjosa": "Pse Vjosa",
+    "tripBuilder": "Ndërto udhëtimin",
+    "faq": "Pyetje të shpeshta",
+    "contact": "Kontakt",
+    "bookNow": "Rezervo tani"
+  },
+  "hero": {
+    "eyebrow": "Lumi i fundit i egër i Europës",
+    "headline1": "Raftim në",
+    "headline2": "Vjosë",
+    "subtitle": "Rrepëza klasa II–III, mure kanjoni dhe ujë kristal në parkun kombëtar të lumit të egër të Shqipërisë. Nuk kërkohet përvojë.",
+    "ctaExplore": "Shiko turet",
+    "ctaAsk": "Bëj një pyetje"
+  },
+  "tours": {
+    "title": "Turet tona",
+    "eyebrow": "Zgjidhni aventurën tuaj",
+    "viewAll": "Shiko të gjitha",
+    "bookTour": "Rezervo këtë tur",
+    "from": "Nga",
+    "perPerson": "/ person",
+    "duration": "Kohëzgjatja",
+    "groupSize": "Madhësia e grupit",
+    "difficulty": "Vështirësia",
+    "season": "Sezoni",
+    "seasonValue": "Prill – Tetor",
+    "backToTours": "Të gjitha turet",
+    "hours": "orë",
+    "people": "persona",
+    "freeCancel": "Anulim falas deri 24h para · Konfirmim i menjëhershëm",
+    "haveQuestion": "Keni një pyetje?"
+  },
+  "booking": {
+    "title": "Rezervo turin tuaj",
+    "firstName": "Emri",
+    "lastName": "Mbiemri",
+    "email": "Email",
+    "phone": "Telefon",
+    "date": "Data e turit",
+    "participants": "Pjesëmarrës",
+    "notes": "Kërkesa të veçanta (opsionale)",
+    "continue": "Vazhdo",
+    "back": "Kthehu",
+    "confirm": "Konfirmo & Paguaj",
+    "total": "Totali",
+    "steps": {
+      "details": "Të dhënat tuaja",
+      "review": "Rishikim",
+      "payment": "Pagesa"
+    }
+  },
+  "footer": {
+    "tagline": "Lumi i fundit i egër i Europës. Një shtresë e pathyer e Vjosës ju pret në Përmet, Shqipëri.",
+    "explore": "Eksploro",
+    "reachUs": "Na kontaktoni",
+    "season": "Sezoni: Prill – Tetor",
+    "rights": "Të gjitha të drejtat e rezervuara."
+  },
+  "faq": {
+    "title": "Pyetje të shpeshta",
+    "eyebrow": "Para rezervimit",
+    "stillQuestion": "Keni ende pyetje?",
+    "whatsappReply": "Përgjigjemi në WhatsApp brenda një ore, Prill deri Tetor.",
+    "askWhatsapp": "Pyete në WhatsApp"
+  },
+  "whyVjosa": {
+    "eyebrow": "Për udhëtarët eco-ndërgjegjshëm",
+    "title": "Pse Vjosa meriton mbrojtje",
+    "subtitle": "Çdo rezervim financon një lumë që pothuajse nuk ekzistonte më."
+  },
+  "guides": {
+    "eyebrow": "Ekipi",
+    "title": "Guidat tuaja",
+    "subtitle": "Çdo tur drejtohet nga një guidë e certifikuar që e njeh personalisht kanjionin e Përmetit.",
+    "yearsOn": "Vjet në Vjosë",
+    "specialty": "Specialiteti",
+    "funFact": "Fakt argëtues",
+    "fullTeam": "I gjithë ekipi",
+    "allGuides": "Shiko të gjitha guidat"
+  },
+  "common": {
+    "loading": "Duke ngarkuar…",
+    "error": "Diçka shkoi keq.",
+    "backHome": "Kthehu në kryefaqe",
+    "learnMore": "Mëso më shumë",
+    "seeAllTours": "Shiko të gjitha turet",
+    "viewAll": "Shiko të gjitha",
+    "readMore": "Lexo më shumë"
+  }
+}

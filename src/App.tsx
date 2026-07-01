@@ -3,12 +3,12 @@ import { useEffect, useState } from 'react'
 import Layout from './components/Layout'
 import Home from './pages/Home'
 import Tours from './pages/Tours'
-import Booking from './pages/Booking'
+import TourDetail from './pages/TourDetail'      // ← new
+import Booking from './pages/Booking'            // already exists
 import BookingConfirmation from './pages/BookingConfirmation'
 import Contact from './pages/Contact'
 import Admin from './pages/Admin'
 import Maintenance from './pages/Maintenance'
-// ─── New pages ───────────────────────────────────────────────
 import Faq from './pages/Faq'
 import Guides from './pages/Guides'
 import GuideProfile from './pages/GuideProfile'
@@ -43,11 +43,15 @@ export default function App() {
           <Route element={<Layout />}>
             <Route path="/" element={<Home />} />
             <Route path="/tours" element={<Tours />} />
-            <Route path="/tours/:slug" element={<Booking />} />
+
+            {/* ─── Updated: Tour detail + separate booking ─── */}
+            <Route path="/tours/:slug" element={<TourDetail />} />
+            <Route path="/booking/:slug" element={<Booking />} />
+
             <Route path="/booking/confirmation" element={<BookingConfirmation />} />
             <Route path="/contact" element={<Contact />} />
 
-            {/* ─── New routes ─────────────────────────────────── */}
+            {/* ─── New pages ─────────────────────────────────── */}
             <Route path="/faq" element={<Faq />} />
             <Route path="/guides" element={<Guides />} />
             <Route path="/guides/:slug" element={<GuideProfile />} />

@@ -1,0 +1,95 @@
+{
+  "nav": {
+    "home": "Home",
+    "tours": "Tour",
+    "guides": "Guide",
+    "whyVjosa": "Perché il Vjosa",
+    "tripBuilder": "Costruisci il tuo viaggio",
+    "faq": "Domande frequenti",
+    "contact": "Contatti",
+    "bookNow": "Prenota ora"
+  },
+  "hero": {
+    "eyebrow": "L'ultimo fiume selvaggio d'Europa",
+    "headline1": "Rafting sul",
+    "headline2": "Vjosa",
+    "subtitle": "Rapide di classe II–III, pareti di canyon e acque cristalline nel parco fluviale protetto dell'Albania. Nessuna esperienza necessaria.",
+    "ctaExplore": "Scopri i tour",
+    "ctaAsk": "Fai una domanda"
+  },
+  "tours": {
+    "title": "I nostri tour",
+    "eyebrow": "Scegli la tua avventura",
+    "viewAll": "Vedi tutti",
+    "bookTour": "Prenota questo tour",
+    "from": "A partire da",
+    "perPerson": "/ persona",
+    "duration": "Durata",
+    "groupSize": "Dimensione del gruppo",
+    "difficulty": "Difficoltà",
+    "season": "Stagione",
+    "seasonValue": "Aprile – Ottobre",
+    "backToTours": "Tutti i tour",
+    "hours": "ore",
+    "people": "persone",
+    "freeCancel": "Cancellazione gratuita fino a 24h prima · Conferma immediata",
+    "haveQuestion": "Hai una domanda?"
+  },
+  "booking": {
+    "title": "Prenota il tuo tour",
+    "firstName": "Nome",
+    "lastName": "Cognome",
+    "email": "Email",
+    "phone": "Telefono",
+    "date": "Data del tour",
+    "participants": "Partecipanti",
+    "notes": "Richieste speciali (opzionale)",
+    "continue": "Continua",
+    "back": "Indietro",
+    "confirm": "Conferma e paga",
+    "total": "Totale",
+    "steps": {
+      "details": "I tuoi dati",
+      "review": "Riepilogo",
+      "payment": "Pagamento"
+    }
+  },
+  "footer": {
+    "tagline": "L'ultimo fiume selvaggio d'Europa. Un tratto indomito del Vjosa ti aspetta a Përmet, Albania.",
+    "explore": "Esplora",
+    "reachUs": "Contattaci",
+    "season": "Stagione: Aprile – Ottobre",
+    "rights": "Tutti i diritti riservati."
+  },
+  "faq": {
+    "title": "Domande frequenti",
+    "eyebrow": "Prima di prenotare",
+    "stillQuestion": "Hai ancora domande?",
+    "whatsappReply": "Rispondiamo su WhatsApp entro un'ora, da aprile a ottobre.",
+    "askWhatsapp": "Scrivi su WhatsApp"
+  },
+  "whyVjosa": {
+    "eyebrow": "Per i viaggiatori eco-consapevoli",
+    "title": "Perché il Vjosa merita protezione",
+    "subtitle": "Ogni prenotazione finanzia un fiume che quasi non esisteva più."
+  },
+  "guides": {
+    "eyebrow": "Il team",
+    "title": "Le tue guide",
+    "subtitle": "Ogni escursione è guidata da una guida certificata che conosce personalmente il canyon di Përmet.",
+    "yearsOn": "Anni sul Vjosa",
+    "specialty": "Specialità",
+    "funFact": "Lo sapevi?",
+    "fullTeam": "Tutto il team",
+    "allGuides": "Vedi tutte le guide"
+  },
+  "common": {
+    "loading": "Caricamento…",
+    "error": "Qualcosa è andato storto.",
+    "backHome": "Torna alla home",
+    "learnMore": "Scopri di più",
+    "seeAllTours": "Vedi tutti i tour",
+    "viewAll": "Vedi tutti",
+    "readMore": "Leggi di più"
+  }
+}
